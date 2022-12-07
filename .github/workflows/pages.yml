@@ -33,7 +33,11 @@ jobs:
           popd
           npm install
       - name: Build
-        run: npm run build
+        run: |
+          pushd themes/hexo-theme-nonetype
+          npm run build
+          popd
+          npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
