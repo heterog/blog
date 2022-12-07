@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Heaven Is</title>
+  
+  
+  <link href="https://byte.band/atom.xml" rel="self"/>
+  
+  <link href="https://byte.band/"/>
+  <updated>2022-12-07T18:11:54.708Z</updated>
+  <id>https://byte.band/</id>
+  
+  <author>
+    <name>Zigit Zo</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>乱谈 Monad</title>
+    <link href="https://byte.band/2022/12-08-babble-monad.html"/>
+    <id>https://byte.band/2022/12-08-babble-monad.html</id>
+    <published>2022-12-08T12:46:25.000Z</published>
+    <updated>2022-12-07T18:11:54.708Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Preface&quot;&gt;&lt;a href=&quot;#Preface&quot; class=&quot;headerlink&quot; title=&quot;Preface&quot;&gt;&lt;/a&gt;Preface&lt;/h2&gt;&lt;p&gt;这几天按着我半吊子的 haskell 水平稍微研究了一下</summary>
+        
+      
+    
+    
+    
+    <category term="lambda" scheme="https://byte.band/categories/lambda/"/>
+    
+    
+  </entry>
+  
+</feed>
