@@ -6,3 +6,6 @@ node_modules/
 public/
 .deploy*/
 _multiconfig.yml
+
+# reproducible doesn't matter, to me :)
+package-lock.json
