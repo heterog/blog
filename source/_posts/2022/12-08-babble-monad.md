@@ -222,14 +222,14 @@ Just 1 >>= \x -> Just (x+3) = Just 4
 [1..3] >>= \x -> [1..x] >>= \y -> return (x + y)
 ```
 
-另外 JavaScript 的 `Promise` 也是跟 monad 有点“异曲同工”之妙的，毕竟 lazy 也是异步（。
+另外 JavaScript 的 `Promise` 也是跟 monad 有点“异曲同工”之妙的，毕竟 lazy eval 能看作是异步（。
 
 ## Myth
 
 我个人依然有一些迷思，可能需要系统地学习下范畴论才能解惑了。
 
 1. 都说 monad 能隔离副作用，但是我看下，感觉跟闭包差不多？将所有状态装箱到一个闭包中，当然外部无法修改，[Stack Overflow 上也有讨论](https://stackoverflow.com/a/79077)，说区别在于“A monad is (roughly) more like a context in which functions can be chained together sequentially, and controls how data is passed from one function to the next.”
-2. 对用法依然不是很清晰，暂时的想法是，monad 就是用来处理“盒子”的，side effect 可以装进盒子中，error handling 也可以装进去，等等；并且 monad 可以传递，因为值的输入与输出类型是一致的，加上 `return` 函数的辅助，容易实现 chain call，并且 chain 上的函数都共享整个 context？
+2. 对用法依然不是很清晰，暂时的想法是，monad 就是用来处理“盒子”的，side effect 可以装进盒子中，error handling 也可以装进去，等等；并且 monad 可以“传递”（不同于 closure 只能捕获函数内的，monad 可以捕获整个链式调用上的结果)，加上 `return` 函数的辅助，容易实现 chain call，并且 chain 上的函数都共享整个 context？
 3. 一个自函子范畴上的幺半群。。嗯，还是不太懂😂
 
 还有，原知乎帖子里讲述了一个 `join` 操作：
@@ -250,4 +250,4 @@ join :: Maybe (Maybe a) -> Maybe a
 
 这一部分我暂时还不是很懂，答主给的例子中那一串 `fmap` 我暂时还是没能推导出类型出来（不太熟悉 `.` 操作符，是 haskell 超高校级的新手了）。To be continued。
 
-其实自己还是有挺多地方不懂的，不过 haskell 可能暂时不会再学习了，目前对 erlang 更有兴趣一些，学一门语言等于学完了并发范式，不香吗不香吗（其实主要是数学太渣了，看了一小会范畴论就已经开始歇菜了，慢慢学 orz）。
+其实自己还是有挺多地方不懂的，不过 haskell 可能暂时不会再学习了，目前对 erlang 更有兴趣一些，学一门语言等于学完了并发范式，不香吗不香吗（其实主要是数学太渣了，看了一小会范畴论就已经开始歇菜了🤧）。

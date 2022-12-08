@@ -1,6 +1,3 @@
-[submodule "theme/hexo-theme-nonetype"]
-	path = theme/hexo-theme-nonetype
-	url = https://github.com/mscratch/hexo-theme-nonetype
 [submodule "themes/hexo-theme-nonetype"]
-	path = themes/hexo-theme-nonetype
-	url = https://github.com/mscratch/hexo-theme-nonetype
+	path = theme/hexo-theme-nonetype
+	url = https://github.com/instret/hexo-theme-nonetype
