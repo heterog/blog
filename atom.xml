@@ -6,7 +6,7 @@
   <link href="https://byte.band/atom.xml" rel="self"/>
   
   <link href="https://byte.band/"/>
-  <updated>2022-12-08T15:00:44.675Z</updated>
+  <updated>2022-12-17T09:21:21.825Z</updated>
   <id>https://byte.band/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>浅入 x86 内存序</title>
+    <link href="https://byte.band/2022/12-17-memory-order-in-x86.html"/>
+    <id>https://byte.band/2022/12-17-memory-order-in-x86.html</id>
+    <published>2022-12-17T09:10:42.000Z</published>
+    <updated>2022-12-17T09:21:21.825Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;内存序（Memory-Order）&quot;&gt;&lt;a href=&quot;#内存序（Memory-Order）&quot; class=&quot;headerlink&quot; title=&quot;内存序（Memory Order）&quot;&gt;&lt;/a&gt;内存序（Memory Order）&lt;/h2&gt;&lt;p&gt;在 x86</summary>
+        
+      
+    
+    
+    
+    <category term="architecture" scheme="https://byte.band/categories/architecture/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>乱谈 Monad</title>
     <link href="https://byte.band/2022/12-08-babble-monad.html"/>
     <id>https://byte.band/2022/12-08-babble-monad.html</id>
     <published>2022-12-08T12:46:25.000Z</published>
-    <updated>2022-12-08T15:00:44.675Z</updated>
+    <updated>2022-12-17T09:21:21.825Z</updated>
     
     
       
