@@ -3,6 +3,10 @@
 "categories": ["architecture"]
 ;;;
 
+```log
+[WARN] Using deprecated method `memory-order', it might be removed in the future.
+```
+
 ## 内存序（Memory Order）
 
 在 x86 中，内存屏障通常是不需要的，因为 x86 是比较严格的 TSO（不完全，因为始终没有“官宣”，但是按照定义来说比较接近，而且不同的厂商如 AMD/Intel 之间的实现也存在略微差别）。

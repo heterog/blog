@@ -1,0 +1,11 @@
+favicon: images/favicon.png
+
+menu:
+  "[->+<]": /
+  About: about.html
+
+copyright:
+  name: Heaven Is
+
+rss:
+  path: atom.xml

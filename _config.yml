@@ -13,7 +13,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://byte.band
+url: https://error.iorw.io
 permalink: :year/:month-:day-:title.html
 permalink_defaults:
 pretty_urls:
@@ -44,14 +44,14 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: false
+  enable: true
   line_number: false
   auto_detect: false
   tab_replace: ''
-  wrap: true
-  hljs: false
+  wrap: false
+  hljs: true
 prismjs:
-  enable: true
+  enable: false
   preprocess: true
   line_number: false
   tab_replace: ''
@@ -97,7 +97,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-nonetype
+theme: hexo-theme-lous
 
 # The theme options
 plugin:
