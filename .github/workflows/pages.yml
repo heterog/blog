@@ -28,15 +28,9 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: |
-          pushd themes/hexo-theme-nonetype
-          npm install
-          popd
           npm install
       - name: Build
         run: |
-          pushd themes/hexo-theme-nonetype
-          npm run build
-          popd
           npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
