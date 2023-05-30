@@ -3,11 +3,11 @@
   <title>Heaven Is</title>
   
   
-  <link href="https://byte.band/atom.xml" rel="self"/>
+  <link href="https://error.iorw.io/atom.xml" rel="self"/>
   
-  <link href="https://byte.band/"/>
-  <updated>2022-12-17T09:21:21.825Z</updated>
-  <id>https://byte.band/</id>
+  <link href="https://error.iorw.io/"/>
+  <updated>2023-05-30T15:10:28.893Z</updated>
+  <id>https://error.iorw.io/</id>
   
   <author>
     <name>Zigit Zo</name>
@@ -18,46 +18,48 @@
   
   <entry>
     <title>浅入 x86 内存序</title>
-    <link href="https://byte.band/2022/12-17-memory-order-in-x86.html"/>
-    <id>https://byte.band/2022/12-17-memory-order-in-x86.html</id>
+    <link href="https://error.iorw.io/2022/12-17-memory-order-in-x86.html"/>
+    <id>https://error.iorw.io/2022/12-17-memory-order-in-x86.html</id>
     <published>2022-12-17T09:10:42.000Z</published>
-    <updated>2022-12-17T09:21:21.825Z</updated>
+    <updated>2023-05-30T15:10:28.893Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;内存序（Memory-Order）&quot;&gt;&lt;a href=&quot;#内存序（Memory-Order）&quot; class=&quot;headerlink&quot; title=&quot;内存序（Memory Order）&quot;&gt;&lt;/a&gt;内存序（Memory Order）&lt;/h2&gt;&lt;p&gt;在 x86</summary>
+    <summary type="html">&lt;pre&gt;&lt;code class=&quot;hljs log&quot;&gt;[WARN] Using deprecated method `memory-order&amp;#x27;, it might be removed in the future.&lt;/code&gt;&lt;/pre&gt;
+&lt;h2</summary>
         
       
     
     
     
-    <category term="architecture" scheme="https://byte.band/categories/architecture/"/>
+    <category term="architecture" scheme="https://error.iorw.io/categories/architecture/"/>
     
     
   </entry>
   
   <entry>
     <title>乱谈 Monad</title>
-    <link href="https://byte.band/2022/12-08-babble-monad.html"/>
-    <id>https://byte.band/2022/12-08-babble-monad.html</id>
+    <link href="https://error.iorw.io/2022/12-08-babble-monad.html"/>
+    <id>https://error.iorw.io/2022/12-08-babble-monad.html</id>
     <published>2022-12-08T12:46:25.000Z</published>
-    <updated>2022-12-17T09:21:21.825Z</updated>
+    <updated>2023-05-30T15:10:28.893Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Preface&quot;&gt;&lt;a href=&quot;#Preface&quot; class=&quot;headerlink&quot; title=&quot;Preface&quot;&gt;&lt;/a&gt;Preface&lt;/h2&gt;&lt;p&gt;这几天按着我半吊子的 haskell 水平稍微研究了一下</summary>
+    <summary type="html">&lt;h2 id=&quot;preface&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#preface&quot;&gt;&lt;/a&gt; Preface&lt;/h2&gt;
+&lt;p&gt;这几天按着我半吊子的 haskell 水平稍微研究了一下</summary>
         
       
     
     
     
-    <category term="lambda" scheme="https://byte.band/categories/lambda/"/>
+    <category term="lambda" scheme="https://error.iorw.io/categories/lambda/"/>
     
     
   </entry>

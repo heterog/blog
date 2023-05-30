@@ -1,174 +1,243 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>乱谈 Monad · Heaven Is</title><meta name="description" content="Preface这几天按着我半吊子的 haskell 水平稍微研究了一下 monad，还是有点不是很理解，只能浅浅地谈一谈我自己的想法，错误和纰漏难以避免，所谓乱谈是也。
-The Moand这部分尽量会详细地阐述一下刘月半大神的这篇文章，适当的改动了一些例子，首先从 Maybe 的构造函数开始，
-da"><meta name="og:description" content="Preface这几天按着我半吊子的 haskell 水平稍微研究了一下 monad，还是有点不是很理解，只能浅浅地谈一谈我自己的想法，错误和纰漏难以避免，所谓乱谈是也。
-The Moand这部分尽量会详细地阐述一下刘月半大神的这篇文章，适当的改动了一些例子，首先从 Maybe 的构造函数开始，
-da"><meta name="twitter:site" content="Heaven Is"><meta name="twitter:title" content="乱谈 Monad"><meta name="twitter:card" content="summary"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/prism-theme.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">[-&gt;+&lt;]</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">Heaven Is</a></h1></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/about.html">关于</a></li><li class="soc"><a href="https://github.com/instret" target="_blank" rel="noopener noreferrer" aria-label="Github"><i class="fa fa-github">&nbsp;</i></a><a href="https://byte.band/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2022&nbsp;<a target="_blank" href="https://byte.band" rel="noopener noreferrer">Zigit Zo</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>乱谈 Monad</a></p><p class="post-meta"><span class="date meta-item">发布于&nbsp;2022-12-08</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a class="a-tag" href="/categories/lambda/" title="lambda">lambda</a><span>&nbsp;</span></span></p><p class="post-abstract"><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>这几天按着我半吊子的 haskell 水平稍微研究了一下 monad，还是有点不是很理解，只能浅浅地谈一谈我自己的想法，错误和纰漏难以避免，所谓乱谈是也。</p>
-<h2 id="The-Moand"><a href="#The-Moand" class="headerlink" title="The Moand"></a>The Moand</h2><p>这部分尽量会详细地阐述一下<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19635359/answer/172074046">刘月半大神的这篇文章</a>，适当的改动了一些例子，首先从 <code>Maybe</code> 的构造函数开始，</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token keyword">data</span> <span class="token constant">Maybe</span> <span class="token hvariable">a</span> <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token hvariable">a</span> <span class="token operator">|</span> <span class="token constant">Nothing</span></code></pre>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+    <title>
+        
+            乱谈 Monad |
+         
+        Heaven Is
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
+    
+<link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/css/solid.min.css">
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Heaven Is" type="application/atom+xml">
+</head>
+
+<body>
+    <div class="body-container">
+        <div class="header-wrapper"><header>
+    <div class="header-container">
+        <div class="header-menu-list">
+            <ul>
+            
+                <li>
+                    <a href="/">[-&gt;+&lt;]</a>
+                </li>
+            
+                <li>
+                    <a href="/about.html">About</a>
+                </li>
+            
+            </ul>
+        </div>
+    </div>
+</header>
+</div>
+        <div class="main-wrapper"><main>
+    <div class="main-container">
+        <div class="post-details">
+            
+            <div class="post-title">
+                <h1>乱谈 Monad</h1>
+            </div>
+            <div class="post-meta">
+                <i class="fa-solid fa-clock"></i>&nbsp;<span class="post-date">2022/12/08</span>
+            </div>
+            
+            <div class="post-content">
+                <h2 id="preface"><a class="markdownIt-Anchor" href="#preface"></a> Preface</h2>
+<p>这几天按着我半吊子的 haskell 水平稍微研究了一下 monad，还是有点不是很理解，只能浅浅地谈一谈我自己的想法，错误和纰漏难以避免，所谓乱谈是也。</p>
+<h2 id="the-moand"><a class="markdownIt-Anchor" href="#the-moand"></a> The Moand</h2>
+<p>这部分尽量会详细地阐述一下<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19635359/answer/172074046">刘月半大神的这篇文章</a>，适当的改动了一些例子，首先从 <code>Maybe</code> 的构造函数开始，</p>
+<pre><code class="hljs haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">Maybe</span> a = <span class="hljs-type">Just</span> a | <span class="hljs-type">Nothing</span></span></code></pre>
 <p>其中 <code>a</code> 是一个类型，我们可以“实例化”一个 <code>Maybe Int</code> 类型出来等等，并且存在两个“构造器”，<code>Just</code> 和 <code>Nothing</code>。例如我们可以构造一个 <code>safeDiv</code> 函数，这个函数作用是保证在遇到除零错误时不会让程序 crash，而是返回一个 <code>Maybe Int</code> 类型：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token hvariable">safeDiv</span> <span class="token operator">::</span> <span class="token constant">Int</span> <span class="token operator">-></span> <span class="token constant">Int</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span>
-<span class="token hvariable">safeDiv</span> <span class="token hvariable">_</span> <span class="token number">0</span> <span class="token operator">=</span> <span class="token constant">Nothing</span>
-<span class="token hvariable">safeDiv</span> <span class="token hvariable">x</span> <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token punctuation">(</span><span class="token hvariable">x</span> <span class="token operator">`div`</span> <span class="token hvariable">y</span><span class="token punctuation">)</span>	<span class="token comment">-- 除法运算符 / 不能作用在 Int 上</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-title">safeDiv</span> :: <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>
+<span class="hljs-title">safeDiv</span> _ <span class="hljs-number">0</span> = <span class="hljs-type">Nothing</span>
+<span class="hljs-title">safeDiv</span> x y = <span class="hljs-type">Just</span> (x `div` y)	<span class="hljs-comment">-- 除法运算符 / 不能作用在 Int 上</span></code></pre>
 <p>如果我们希望一个比较复杂的除法运算中，都能保证除零安全的话，我们可能会写出下面这样的代码：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- 安全地计算 a/b/c/d/e</span>
-<span class="token keyword">case</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">a</span> <span class="token hvariable">b</span> <span class="token keyword">of</span>
-  <span class="token constant">Nothing</span> <span class="token operator">-></span> <span class="token constant">Nothing</span>
-  <span class="token constant">Just</span> <span class="token hvariable">x</span>  <span class="token operator">-></span> <span class="token keyword">case</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">x</span> <span class="token hvariable">c</span> <span class="token keyword">of</span>	<span class="token comment">-- 如果 b != 0，能够继续进行除法，尝试计算 (a/b)/c</span>
-    <span class="token constant">Nothing</span> <span class="token operator">-></span> <span class="token constant">Nothing</span>
-    <span class="token constant">Just</span> <span class="token hvariable">y</span>  <span class="token operator">-></span> <span class="token keyword">case</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">y</span> <span class="token hvariable">d</span> <span class="token keyword">of</span>	<span class="token comment">-- 如果 c != 0，继续尝试计算 (a/b/c)/d</span>
-      <span class="token constant">Nothing</span> <span class="token operator">-></span> <span class="token constant">Nothing</span>
-      <span class="token constant">Just</span> <span class="token hvariable">z</span>  <span class="token operator">-></span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">z</span> <span class="token hvariable">e</span>		<span class="token comment">-- 如果 d != 0，继续尝试计算 (a/b/c/d)/e</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-comment">-- 安全地计算 a/b/c/d/e</span>
+<span class="hljs-title">case</span> safeDiv a b <span class="hljs-keyword">of</span>
+  <span class="hljs-type">Nothing</span> -&gt; <span class="hljs-type">Nothing</span>
+  <span class="hljs-type">Just</span> x  -&gt; <span class="hljs-keyword">case</span> safeDiv x c <span class="hljs-keyword">of</span>	<span class="hljs-comment">-- 如果 b != 0，能够继续进行除法，尝试计算 (a/b)/c</span>
+    <span class="hljs-type">Nothing</span> -&gt; <span class="hljs-type">Nothing</span>
+    <span class="hljs-type">Just</span> y  -&gt; <span class="hljs-keyword">case</span> safeDiv y d <span class="hljs-keyword">of</span>	<span class="hljs-comment">-- 如果 c != 0，继续尝试计算 (a/b/c)/d</span>
+      <span class="hljs-type">Nothing</span> -&gt; <span class="hljs-type">Nothing</span>
+      <span class="hljs-type">Just</span> z  -&gt; safeDiv z e		<span class="hljs-comment">-- 如果 d != 0，继续尝试计算 (a/b/c/d)/e</span></code></pre>
 <p>可以看到代码非常的啰嗦，而且看着很难受（对应过程式语言就是一层又一层的 if 嵌套），有没有办法能优化呢？实际上上面的例子中，我们可以从几个 <code>case</code> 中提取出一些公共特征（伪代码，<code>&#123;Int&#125;</code> 表示此处的变量类型为 <code>Int</code>）：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- 将 safeDiv x c 使用 \x -> safeDiv x c 替换，即可得到最简洁的 Int -> Maybe Int 函数；</span>
-<span class="token comment">--   因为被 lambda 捕获的量基本都能被视作常量（？）</span>
-<span class="token keyword">case</span> <span class="token punctuation">&#123;</span><span class="token constant">Maybe</span> <span class="token constant">Int</span><span class="token punctuation">&#125;</span> <span class="token keyword">of</span>
-  <span class="token constant">Nothing</span> <span class="token operator">-></span> <span class="token constant">Nothing</span>
-  <span class="token constant">Just</span> <span class="token hvariable">x</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span><span class="token constant">Int</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span><span class="token punctuation">&#125;</span> <span class="token hvariable">x</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-comment">-- 将 safeDiv x c 使用 \x -&gt; safeDiv x c 替换，即可得到最简洁的 Int -&gt; Maybe Int 函数；</span>
+<span class="hljs-comment">--   因为被 lambda 捕获的量基本都能被视作常量（？）</span>
+<span class="hljs-title">case</span> &#123;<span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>&#125; <span class="hljs-keyword">of</span>
+  <span class="hljs-type">Nothing</span> -&gt; <span class="hljs-type">Nothing</span>
+  <span class="hljs-type">Just</span> x -&gt; &#123;<span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>&#125; x</code></pre>
 <p>给上面的类型附上名字和类型，就成了：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token builtin">fmap</span>' <span class="token operator">::</span> <span class="token punctuation">(</span><span class="token constant">Int</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span>
-<span class="token builtin">fmap</span>' <span class="token hvariable">f</span> <span class="token hvariable">m</span> <span class="token operator">=</span> <span class="token keyword">case</span> <span class="token hvariable">m</span> <span class="token keyword">of</span>
-  <span class="token constant">Nothing</span> <span class="token operator">-></span> <span class="token constant">Nothing</span>
-  <span class="token constant">Just</span> <span class="token hvariable">x</span> <span class="token operator">-></span> <span class="token hvariable">f</span> <span class="token hvariable">x</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-title">fmap&#x27;</span> :: (<span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>
+<span class="hljs-title">fmap&#x27;</span> f m = <span class="hljs-keyword">case</span> m <span class="hljs-keyword">of</span>
+  <span class="hljs-type">Nothing</span> -&gt; <span class="hljs-type">Nothing</span>
+  <span class="hljs-type">Just</span> x -&gt; f x</code></pre>
 <p>到这里我们就得到了一个 <code>Maybe</code> 的所谓 functor（函子），</p>
 <blockquote>
 <p>Maybe 之所以是函子，是因为它可以通过 fmap（functor map）把所有的函数拎到「Maybe 空间」里。</p>
 </blockquote>
 <p>有了函子之后，我们尝试把这个抽象应用到我们的例子上去看看：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token keyword">let</span>
-    <span class="token hvariable">x</span> <span class="token operator">=</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">a</span> <span class="token hvariable">b</span>			<span class="token comment">-- 第一层 a/b</span>
-    <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token builtin">fmap</span>' <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">v</span> <span class="token operator">-></span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">v</span> <span class="token hvariable">c</span><span class="token punctuation">)</span> <span class="token hvariable">x</span>	<span class="token comment">-- 第二层 (a/b)/c</span>
-    <span class="token hvariable">z</span> <span class="token operator">=</span> <span class="token builtin">fmap</span>' <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">v</span> <span class="token operator">-></span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">v</span> <span class="token hvariable">d</span><span class="token punctuation">)</span> <span class="token hvariable">y</span>	<span class="token comment">-- 第三层 (a/b/c)/d</span>
-<span class="token keyword">in</span>
-    <span class="token builtin">fmap</span>' <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">v</span> <span class="token operator">-></span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">v</span> <span class="token hvariable">e</span><span class="token punctuation">)</span> <span class="token hvariable">z</span>		<span class="token comment">-- 第四层 (a/b/c/d)/e</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-title">let</span>
+    x = safeDiv a b			<span class="hljs-comment">-- 第一层 a/b</span>
+    y = fmap&#x27; (\v -&gt; safeDiv v c) x	<span class="hljs-comment">-- 第二层 (a/b)/c</span>
+    z = fmap&#x27; (\v -&gt; safeDiv v d) y	<span class="hljs-comment">-- 第三层 (a/b/c)/d</span>
+<span class="hljs-title">in</span>
+    fmap&#x27; (\v -&gt; safeDiv v e) z		<span class="hljs-comment">-- 第四层 (a/b/c/d)/e</span></code></pre>
 <p>抛开性能不谈（雾），这种写法看起来已经舒服很多了，但是感觉还是“存在进步空间”的样子。也的确，haskell 给我们提供了一个 <code>&gt;&gt;=</code> 运算符，可以让我们来实现 <code>fmap</code>，并且再次优化上面的代码：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- 这是一个中缀运算符，这个例子中 (>>=) m f 等价于 m >>= f；定义与 fmap 完全一致</span>
-<span class="token punctuation">(</span><span class="token operator">>>=</span><span class="token punctuation">)</span> <span class="token operator">::</span> <span class="token constant">Maybe</span> <span class="token constant">Int</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token constant">Int</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span>
-<span class="token punctuation">(</span><span class="token operator">>>=</span><span class="token punctuation">)</span> <span class="token hvariable">m</span> <span class="token hvariable">f</span> <span class="token operator">=</span> <span class="token keyword">case</span> <span class="token hvariable">m</span> <span class="token keyword">of</span>
-  <span class="token constant">Nothing</span> <span class="token operator">-></span> <span class="token constant">Nothing</span>
-  <span class="token constant">Just</span> <span class="token hvariable">x</span> <span class="token operator">-></span> <span class="token hvariable">f</span> <span class="token hvariable">x</span>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- 这是一个中缀运算符，这个例子中 (&gt;&gt;=) m f 等价于 m &gt;&gt;= f；定义与 fmap 完全一致</span>
+(&gt;&gt;=) :: <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span> -&gt; (<span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>
+(&gt;&gt;=) m f = <span class="hljs-keyword">case</span> m <span class="hljs-keyword">of</span>
+  <span class="hljs-type">Nothing</span> -&gt; <span class="hljs-type">Nothing</span>
+  <span class="hljs-type">Just</span> x -&gt; f x
 
-<span class="token comment">-- the optimzed version</span>
-<span class="token hvariable">safeDiv</span> <span class="token hvariable">a</span> <span class="token hvariable">b</span> <span class="token operator">>>=</span> <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">v</span> <span class="token operator">-></span>
-  <span class="token hvariable">safeDiv</span> <span class="token hvariable">v</span> <span class="token hvariable">c</span> <span class="token operator">>>=</span> <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">w</span> <span class="token operator">-></span>
-    <span class="token hvariable">safeDiv</span> <span class="token hvariable">w</span> <span class="token hvariable">d</span> <span class="token operator">>>=</span> <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">x</span> <span class="token operator">-></span>
-      <span class="token hvariable">safeDiv</span> <span class="token hvariable">x</span> <span class="token hvariable">e</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-
+<span class="hljs-comment">-- the optimzed version</span>
+<span class="hljs-title">safeDiv</span> a b &gt;&gt;= (\v -&gt;
+  safeDiv v c &gt;&gt;= (\w -&gt;
+    safeDiv w d &gt;&gt;= (\x -&gt;
+      safeDiv x e)))</code></pre>
 <p>好像，有点反向优化了？没事，haskell 为这个模式设计了 <code>do</code> 语法糖：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token hvariable">val</span> <span class="token operator">=</span> <span class="token keyword">do</span>
-  <span class="token hvariable">x</span> <span class="token operator">&lt;-</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">a</span> <span class="token hvariable">b</span>
-  <span class="token hvariable">y</span> <span class="token operator">&lt;-</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">x</span> <span class="token hvariable">c</span>
-  <span class="token hvariable">z</span> <span class="token operator">&lt;-</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">y</span> <span class="token hvariable">d</span>
-  <span class="token hvariable">safeDiv</span> <span class="token hvariable">z</span> <span class="token hvariable">e</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-title">val</span> = <span class="hljs-keyword">do</span>
+  x &lt;- safeDiv a b
+  y &lt;- safeDiv x c
+  z &lt;- safeDiv y d
+  safeDiv z e</code></pre>
 <p>简洁，好看，elegant！当然，因为标准库里<a target="_blank" rel="noopener" href="https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Maybe.html">已经提供</a>了 <code>instance Monad Maybe</code> 了，所以最后的代码中，我们不需要再定义任何其他函数了，只需要保留 <code>safeDiv</code> 就可以了。当然我们也能自行实现各种各样的 functor，有点像是 OOP 的接口一样（笑）。</p>
-<h2 id="Functor-and-Monad"><a href="#Functor-and-Monad" class="headerlink" title="Functor and Monad"></a>Functor and Monad</h2><p>上面的例子中，我们的 <code>fmap&#39;</code> 是自己定义的，而官方针对 <a target="_blank" rel="noopener" href="https://hackage.haskell.org/package/base-4.17.0.0/docs/src/GHC.Base.html"><code>Maybe</code> 实现的 <code>fmap</code></a> 是不太一样的：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- | @since 2.01</span>
-<span class="token keyword">instance</span>  <span class="token constant">Functor</span> <span class="token constant">Maybe</span>  <span class="token keyword">where</span>
-    <span class="token builtin">fmap</span> <span class="token hvariable">_</span> <span class="token constant">Nothing</span>       <span class="token operator">=</span> <span class="token constant">Nothing</span>
-    <span class="token builtin">fmap</span> <span class="token hvariable">f</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token hvariable">a</span><span class="token punctuation">)</span>      <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token punctuation">(</span><span class="token hvariable">f</span> <span class="token hvariable">a</span><span class="token punctuation">)</span>	<span class="token comment">-- notice here!</span></code></pre>
-
+<h2 id="functor-and-monad"><a class="markdownIt-Anchor" href="#functor-and-monad"></a> Functor and Monad</h2>
+<p>上面的例子中，我们的 <code>fmap'</code> 是自己定义的，而官方针对 <a target="_blank" rel="noopener" href="https://hackage.haskell.org/package/base-4.17.0.0/docs/src/GHC.Base.html"><code>Maybe</code> 实现的 <code>fmap</code></a> 是不太一样的：</p>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- | @since 2.01</span>
+<span class="hljs-class"><span class="hljs-keyword">instance</span>  <span class="hljs-type">Functor</span> <span class="hljs-type">Maybe</span>  <span class="hljs-keyword">where</span></span>
+    fmap _ <span class="hljs-type">Nothing</span>       = <span class="hljs-type">Nothing</span>
+    fmap f (<span class="hljs-type">Just</span> a)      = <span class="hljs-type">Just</span> (f a)	<span class="hljs-comment">-- notice here!</span></code></pre>
 <p>我们的例子中模式匹配项是 <code>Just x -&gt; fx</code>，但是官方的却是 <code>Just x -&gt; Just (f a)</code>，后者其实才是标准格式；<code>safeDiv</code> 这个例子不同是因为我们完全是根据函数类型来“特化”的一个：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- safeDiv version of fmap</span>
-<span class="token builtin">fmap</span> <span class="token operator">::</span> <span class="token punctuation">(</span><span class="token constant">Int</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token constant">Int</span>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- safeDiv version of fmap</span>
+<span class="hljs-title">fmap</span> :: (<span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Maybe</span> <span class="hljs-type">Int</span>
 
-<span class="token comment">-- haskell fmap</span>
-<span class="token builtin">fmap</span> <span class="token operator">::</span> <span class="token punctuation">(</span><span class="token hvariable">a</span> <span class="token operator">-></span> <span class="token hvariable">b</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token hvariable">f</span> <span class="token hvariable">a</span> <span class="token operator">-></span> <span class="token hvariable">f</span> <span class="token hvariable">b</span></code></pre>
-
+<span class="hljs-comment">-- haskell fmap</span>
+<span class="hljs-title">fmap</span> :: (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
 <p>Obviously，区别就出来了。这里提这个区别是因为这里要开始区分 functor 和 monad 了。前文的例子中可能大家会觉得 monad 跟 functor 是一回事，实际上是存在差异的。Haskell 定义了 <a target="_blank" rel="noopener" href="https://wiki.haskell.org/Functor-Applicative-Monad_Proposal">Functor-Applicative-Monad</a> 结构，简而言之就是 applicative 必定是 functor，monad 必定是 applicative，三者有继承关系，所以 functor 其实是性质是比较弱的。</p>
 <p>这部分主要会根据哔站<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qh411q7cS">鹤翔万里的视频</a>进行一定的细致阐述，也会对前文刘月半大神的文章进行再补充。先从 functor 开始吧，它的作用看上面函数定义就能略知一二了，给定一个一般的函数，让它去处理“装箱”后的类型，并且返回一个同样被装箱了的类型，看 haskell 的 <code>Maybe</code> 实现就知道了，这里贴出来视频的几个例子：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- instance Functor Maybe</span>
-<span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token number">4</span>
-<span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token constant">Nothing</span> <span class="token operator">=</span> <span class="token constant">Nothing</span>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- instance Functor Maybe</span>
+<span class="hljs-title">fmap</span> (+<span class="hljs-number">3</span>) (<span class="hljs-type">Just</span> <span class="hljs-number">1</span>) = <span class="hljs-type">Just</span> <span class="hljs-number">4</span>
+<span class="hljs-title">fmap</span> (+<span class="hljs-number">3</span>) <span class="hljs-type">Nothing</span> = <span class="hljs-type">Nothing</span>
 
-<span class="token comment">-- instance Functor []</span>
-<span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span></code></pre>
-
+<span class="hljs-comment">-- instance Functor []</span>
+<span class="hljs-title">fmap</span> (+<span class="hljs-number">3</span>) [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] = [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]</code></pre>
 <p>当然 functor 根据定义，它的局限性就在于只能处理值，对于函数，它只会返回一个装箱后的函数：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">+</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-title">fmap</span> (+) (<span class="hljs-type">Just</span> <span class="hljs-number">3</span>) = <span class="hljs-type">Just</span> (+<span class="hljs-number">3</span>)</code></pre>
 <p>并且我们无法继续往下进行了：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">=</span> 🤯</code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-title">fmap</span> (<span class="hljs-type">Just</span> (+<span class="hljs-number">3</span>)) (<span class="hljs-type">Just</span> <span class="hljs-number">3</span>) = 🤯</code></pre>
 <p>这时就需要引入 applicative 来处理了，直接看官方定义：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- | @since 2.01</span>
-<span class="token keyword">instance</span> <span class="token constant">Applicative</span> <span class="token constant">Maybe</span> <span class="token keyword">where</span>
-    <span class="token hvariable">pure</span> <span class="token operator">=</span> <span class="token constant">Just</span>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- | @since 2.01</span>
+<span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Applicative</span> <span class="hljs-type">Maybe</span> <span class="hljs-keyword">where</span></span>
+    pure = <span class="hljs-type">Just</span>
 
-    <span class="token constant">Just</span> <span class="token hvariable">f</span>  <span class="token operator">&lt;*></span> <span class="token hvariable">m</span>       <span class="token operator">=</span> <span class="token builtin">fmap</span> <span class="token hvariable">f</span> <span class="token hvariable">m</span>
-    <span class="token constant">Nothing</span> <span class="token operator">&lt;*></span> <span class="token hvariable">_m</span>      <span class="token operator">=</span> <span class="token constant">Nothing</span>
+    <span class="hljs-type">Just</span> f  &lt;*&gt; m       = fmap f m
+    <span class="hljs-type">Nothing</span> &lt;*&gt; _m      = <span class="hljs-type">Nothing</span>
 
-    <span class="token hvariable">liftA2</span> <span class="token hvariable">f</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token hvariable">x</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token hvariable">y</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token punctuation">(</span><span class="token hvariable">f</span> <span class="token hvariable">x</span> <span class="token hvariable">y</span><span class="token punctuation">)</span>
-    <span class="token hvariable">liftA2</span> <span class="token hvariable">_</span> <span class="token hvariable">_</span> <span class="token hvariable">_</span> <span class="token operator">=</span> <span class="token constant">Nothing</span>
+    liftA2 f (<span class="hljs-type">Just</span> x) (<span class="hljs-type">Just</span> y) = <span class="hljs-type">Just</span> (f x y)
+    liftA2 _ _ _ = <span class="hljs-type">Nothing</span>
 
-    <span class="token constant">Just</span> <span class="token hvariable">_m1</span> <span class="token operator">*></span> <span class="token hvariable">m2</span>      <span class="token operator">=</span> <span class="token hvariable">m2</span>
-    <span class="token constant">Nothing</span>  <span class="token operator">*></span> <span class="token hvariable">_m2</span>     <span class="token operator">=</span> <span class="token constant">Nothing</span></code></pre>
-
+    <span class="hljs-type">Just</span> _m1 *&gt; m2      = m2
+    <span class="hljs-type">Nothing</span>  *&gt; _m2     = <span class="hljs-type">Nothing</span></code></pre>
 <p>主要关注 <code>&lt;*&gt;</code> 这个函数（读作 apply），可以看到 applicative 将 <code>Just (+3)</code> 里面的 <code>(+3)</code> 函数给取出来了，然后通过 <code>fmap</code> 应用函数，这样得到的结果依然是个 <code>Maybe</code> 类型，it just works。</p>
 <p>同样，贴上视频中的几个例子当作 memo：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- instance Applicative Maybe</span>
-<span class="token constant">Just</span> <span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">&lt;*></span> <span class="token constant">Just</span> <span class="token number">1</span> <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token number">4</span>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- instance Applicative Maybe</span>
+<span class="hljs-type">Just</span> (+<span class="hljs-number">3</span>) &lt;*&gt; <span class="hljs-type">Just</span> <span class="hljs-number">1</span> = <span class="hljs-type">Just</span> <span class="hljs-number">4</span>
 
-<span class="token comment">-- instance Applicative []</span>
-<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">&lt;*></span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span></code></pre>
-
-<p>如果我们把前文例子中 <code>safeDiv</code> 里的 <code>fmap&#39;</code> 删去，那么下面这个函数就会开始出类型错误：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- without customized fmap function</span>
-<span class="token keyword">let</span>
-    <span class="token hvariable">x</span> <span class="token operator">=</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">a</span> <span class="token hvariable">b</span>			<span class="token comment">-- 第一层 a/b</span>
-    <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">v</span> <span class="token operator">-></span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">v</span> <span class="token hvariable">c</span><span class="token punctuation">)</span> <span class="token hvariable">x</span>	<span class="token comment">-- 第二层 (a/b)/c</span>
-    <span class="token hvariable">z</span> <span class="token operator">=</span> <span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">v</span> <span class="token operator">-></span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">v</span> <span class="token hvariable">d</span><span class="token punctuation">)</span> <span class="token hvariable">y</span>	<span class="token comment">-- 第三层 (a/b/c)/d</span>
-<span class="token keyword">in</span>
-    <span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">v</span> <span class="token operator">-></span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">v</span> <span class="token hvariable">e</span><span class="token punctuation">)</span> <span class="token hvariable">z</span>		<span class="token comment">-- 第四层 (a/b/c/d)/e</span></code></pre>
-
+<span class="hljs-comment">-- instance Applicative []</span>
+[(+<span class="hljs-number">1</span>), (*<span class="hljs-number">2</span>)] &lt;*&gt; [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>] = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]</code></pre>
+<p>如果我们把前文例子中 <code>safeDiv</code> 里的 <code>fmap'</code> 删去，那么下面这个函数就会开始出类型错误：</p>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- without customized fmap function</span>
+<span class="hljs-title">let</span>
+    x = safeDiv a b			<span class="hljs-comment">-- 第一层 a/b</span>
+    y = fmap (\v -&gt; safeDiv v c) x	<span class="hljs-comment">-- 第二层 (a/b)/c</span>
+    z = fmap (\v -&gt; safeDiv v d) y	<span class="hljs-comment">-- 第三层 (a/b/c)/d</span>
+<span class="hljs-title">in</span>
+    fmap (\v -&gt; safeDiv v e) z		<span class="hljs-comment">-- 第四层 (a/b/c/d)/e</span></code></pre>
 <p>原因前文说了，<code>fmap</code> 其实返回的是 <code>Just (f a)</code>，也就是：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token operator">\</span><span class="token hvariable">v</span> <span class="token operator">-></span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">v</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token number">10</span><span class="token punctuation">)</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-title">fmap</span> (\v -&gt; safeDiv v <span class="hljs-number">1</span>) (<span class="hljs-type">Just</span> <span class="hljs-number">10</span>) = <span class="hljs-type">Just</span> (<span class="hljs-type">Just</span> <span class="hljs-number">10</span>)</code></pre>
 <p>这就有点难受了，不是我们预期想要的 <code>Just 10</code>。这种情况下就需要使用 monad 了，也就是上面定义中 <code>&gt;&gt;=</code>（读作 bind）来进行处理了，也是直接看官方代码吧：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- | @since 2.01</span>
-<span class="token keyword">instance</span>  <span class="token constant">Monad</span> <span class="token constant">Maybe</span>  <span class="token keyword">where</span>
-    <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token hvariable">x</span><span class="token punctuation">)</span> <span class="token operator">>>=</span> <span class="token hvariable">k</span>      <span class="token operator">=</span> <span class="token hvariable">k</span> <span class="token hvariable">x</span>
-    <span class="token constant">Nothing</span>  <span class="token operator">>>=</span> <span class="token hvariable">_</span>      <span class="token operator">=</span> <span class="token constant">Nothing</span>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- | @since 2.01</span>
+<span class="hljs-class"><span class="hljs-keyword">instance</span>  <span class="hljs-type">Monad</span> <span class="hljs-type">Maybe</span>  <span class="hljs-keyword">where</span></span>
+    (<span class="hljs-type">Just</span> x) &gt;&gt;= k      = k x
+    <span class="hljs-type">Nothing</span>  &gt;&gt;= _      = <span class="hljs-type">Nothing</span>
 
-    <span class="token punctuation">(</span><span class="token operator">>></span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*></span><span class="token punctuation">)</span></code></pre>
-
+    (&gt;&gt;) = (*&gt;)</code></pre>
 <p>对比官方 <code>fmap</code> 就能看到，monad 的 instance 中不再是 <code>Just (k x)</code>，而是简介、明了的 <code>k x</code>，neat。这也是跟我们在 <code>safeDiv</code> 中实现的 <code>&gt;&gt;=</code> 版本完全等价，所以它就是一个 monad。</p>
 <p>依然，贴上一些视频中的例子：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token constant">Just</span> <span class="token number">1</span> <span class="token operator">>>=</span> <span class="token operator">\</span><span class="token hvariable">x</span> <span class="token operator">-></span> <span class="token constant">Just</span> <span class="token punctuation">(</span><span class="token hvariable">x</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token constant">Just</span> <span class="token number">4</span></code></pre>
-
+<pre><code class="hljs haskell"><span class="hljs-type">Just</span> <span class="hljs-number">1</span> &gt;&gt;= \x -&gt; <span class="hljs-type">Just</span> (x+<span class="hljs-number">3</span>) = <span class="hljs-type">Just</span> <span class="hljs-number">4</span></code></pre>
 <p>个人理解，无论是 functor、applicative 还是 monad，它们本质上都是为了更好地处理“被装箱的类型”。而 haskell 比较推崇这种盒子模式，很多类型像 <code>Maybe a</code>、<code>IO a</code> 这种，都实现了 monad 的 bind 运算符。</p>
 <p>比如 Haskell 里常用的数组展开，其实也是借助 functor 来完成的，来自<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/39734882">评论区的 Narc 大神</a>：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token comment">-- original</span>
-<span class="token punctuation">[</span> <span class="token hvariable">x</span> <span class="token operator">+</span> <span class="token hvariable">y</span> <span class="token operator">|</span> <span class="token hvariable">x</span> <span class="token operator">&lt;-</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">..</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token hvariable">y</span> <span class="token operator">&lt;-</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">..</span><span class="token hvariable">x</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<pre><code class="hljs haskell"><span class="hljs-comment">-- original</span>
+[ x + y | x &lt;- [<span class="hljs-number">1</span>..<span class="hljs-number">3</span>], y &lt;- [<span class="hljs-number">1</span>..x]]
 
-<span class="token comment">-- desuger</span>
-<span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">..</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">>>=</span> <span class="token operator">\</span><span class="token hvariable">x</span> <span class="token operator">-></span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">..</span><span class="token hvariable">x</span><span class="token punctuation">]</span> <span class="token operator">>>=</span> <span class="token operator">\</span><span class="token hvariable">y</span> <span class="token operator">-></span> <span class="token builtin">return</span> <span class="token punctuation">(</span><span class="token hvariable">x</span> <span class="token operator">+</span> <span class="token hvariable">y</span><span class="token punctuation">)</span></code></pre>
-
+<span class="hljs-comment">-- desuger</span>
+[<span class="hljs-number">1</span>..<span class="hljs-number">3</span>] &gt;&gt;= \x -&gt; [<span class="hljs-number">1</span>..x] &gt;&gt;= \y -&gt; return (x + y)</code></pre>
 <p>另外 JavaScript 的 <code>Promise</code> 也是跟 monad 有点“异曲同工”之妙的，毕竟 lazy eval 能看作是异步（。</p>
-<h2 id="Myth"><a href="#Myth" class="headerlink" title="Myth"></a>Myth</h2><p>我个人依然有一些迷思，可能需要系统地学习下范畴论才能解惑了。</p>
+<h2 id="myth"><a class="markdownIt-Anchor" href="#myth"></a> Myth</h2>
+<p>我个人依然有一些迷思，可能需要系统地学习下范畴论才能解惑了。</p>
 <ol>
 <li>都说 monad 能隔离副作用，但是我看下，感觉跟闭包差不多？将所有状态装箱到一个闭包中，当然外部无法修改，<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/79077">Stack Overflow 上也有讨论</a>，说区别在于“A monad is (roughly) more like a context in which functions can be chained together sequentially, and controls how data is passed from one function to the next.”</li>
 <li>对用法依然不是很清晰，暂时的想法是，monad 就是用来处理“盒子”的，side effect 可以装进盒子中，error handling 也可以装进去，等等；并且 monad 可以“传递”（不同于 closure 只能捕获函数内的，monad 可以捕获整个链式调用上的结果)，加上 <code>return</code> 函数的辅助，容易实现 chain call，并且 chain 上的函数都共享整个 context？</li>
 <li>一个自函子范畴上的幺半群。。嗯，还是不太懂😂</li>
 </ol>
 <p>还有，原知乎帖子里讲述了一个 <code>join</code> 操作：</p>
-<pre class="language-haskell" data-language="haskell"><code class="language-haskell"><span class="token keyword">let</span> <span class="token hvariable">x</span> <span class="token operator">=</span> <span class="token hvariable">safeDiv</span> <span class="token hvariable">a</span> <span class="token hvariable">b</span>
-    <span class="token hvariable">y</span> <span class="token operator">=</span> <span class="token builtin">fmap</span> <span class="token punctuation">(</span><span class="token hvariable">safeDiv</span> <span class="token hvariable">c</span><span class="token punctuation">)</span> <span class="token hvariable">x</span>
-    <span class="token hvariable">z</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">fmap</span> <span class="token operator">.</span> <span class="token builtin">fmap</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token hvariable">safeDiv</span> <span class="token hvariable">d</span><span class="token punctuation">)</span> <span class="token hvariable">y</span>
-    <span class="token keyword">in</span> <span class="token punctuation">(</span><span class="token builtin">fmap</span> <span class="token operator">.</span> <span class="token builtin">fmap</span> <span class="token operator">.</span> <span class="token builtin">fmap</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token hvariable">safeDiv</span> <span class="token hvariable">e</span><span class="token punctuation">)</span> <span class="token hvariable">z</span>
+<pre><code class="hljs haskell"><span class="hljs-title">let</span> x = safeDiv a b
+    y = fmap (safeDiv c) x
+    z = (fmap . fmap) (safeDiv d) y
+    <span class="hljs-keyword">in</span> (fmap . fmap . fmap) (safeDiv e) z
 
-<span class="token hvariable">join</span> <span class="token operator">::</span> <span class="token constant">Maybe</span> <span class="token punctuation">(</span><span class="token constant">Maybe</span> <span class="token hvariable">a</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token hvariable">a</span>
-  <span class="token hvariable">join</span> <span class="token punctuation">(</span><span class="token constant">Just</span> <span class="token hvariable">x</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token hvariable">x</span>
-  <span class="token hvariable">join</span> <span class="token constant">Nothing</span>  <span class="token operator">=</span> <span class="token constant">Nothing</span>
+<span class="hljs-title">join</span> :: <span class="hljs-type">Maybe</span> (<span class="hljs-type">Maybe</span> a) -&gt; <span class="hljs-type">Maybe</span> a
+  join (<span class="hljs-type">Just</span> x) = x
+  join <span class="hljs-type">Nothing</span>  = <span class="hljs-type">Nothing</span>
 
-<span class="token punctuation">(</span><span class="token operator">>>=</span><span class="token punctuation">)</span> <span class="token operator">::</span> <span class="token constant">Maybe</span> <span class="token hvariable">a</span> <span class="token operator">-></span> <span class="token punctuation">(</span><span class="token hvariable">a</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token hvariable">b</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token constant">Maybe</span> <span class="token hvariable">b</span>
-  <span class="token punctuation">(</span><span class="token operator">>>=</span><span class="token punctuation">)</span> <span class="token hvariable">mbx</span> <span class="token hvariable">f</span> <span class="token operator">=</span> <span class="token hvariable">join</span> <span class="token punctuation">(</span><span class="token builtin">fmap</span> <span class="token hvariable">f</span> <span class="token hvariable">mbx</span><span class="token punctuation">)</span></code></pre>
-
+(&gt;&gt;=) :: <span class="hljs-type">Maybe</span> a -&gt; (a -&gt; <span class="hljs-type">Maybe</span> b) -&gt; <span class="hljs-type">Maybe</span> b
+  (&gt;&gt;=) mbx f = join (fmap f mbx)</code></pre>
 <p>这一部分我暂时还不是很懂，答主给的例子中那一串 <code>fmap</code> 我暂时还是没能推导出类型出来（不太熟悉 <code>.</code> 操作符，是 haskell 超高校级的新手了）。To be continued。</p>
 <p>其实自己还是有挺多地方不懂的，不过 haskell 可能暂时不会再学习了，目前对 erlang 更有兴趣一些，学一门语言等于学完了并发范式，不香吗不香吗（其实主要是数学太渣了，看了一小会范畴论就已经开始歇菜了🤧）。</p>
-</p></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/2022/12-17-memory-order-in-x86.html" title="浅入 x86 内存序"><i class="fa fa-angle-double-left"></i>&nbsp;上一篇: 浅入 x86 内存序</a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2022&nbsp;<a target="_blank" href="https://byte.band" rel="noopener noreferrer">Zigit Zo</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><!--script(src= url_for('js/google-analytics.js'))--><script src="/js/typography.js"></script></body></html>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+  
+
+</div>
+        <div class="footer-wrapper"><footer>
+    <div class="footer-container">
+        <div class="footer-meta">
+            
+                <div class="footer-meta-copyright">
+                    &copy; 2023 Heaven Is.
+                </div>
+            
+            
+            
+                <div class="footer-meta-rss">
+                    <a href="/atom.xml"><i class="fa-solid fa-rss"></i></a>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+</div>
+    </div>
+</body>
+</html>

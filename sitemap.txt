@@ -1,0 +1,6 @@
+https://error.iorw.io/2022/12-08-babble-monad.html
+https://error.iorw.io/2022/12-17-memory-order-in-x86.html
+https://error.iorw.io/about.html
+https://error.iorw.io/
+https://error.iorw.io/categories/lambda/
+https://error.iorw.io/categories/architecture/
