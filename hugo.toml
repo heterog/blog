@@ -1,0 +1,39 @@
+baseURL = 'https://error.iorw.io'
+languageCode = 'zh-hans'
+defaultContentLanguage = 'zh'
+title = 'Heaven Is'
+theme = "hortensia"	
+enableRobotsTXT = true
+hasCJKLanguage = true
+rssLimit = 10
+copyright = "unlicense yet."
+enableEmoji =  true
+disableKinds = ["taxonomy", "taxonomyTerm"]
+staticDir = ["static"]
+
+[author]
+	name = "Byte"
+
+[markup.goldmark.renderer]
+	unsafe = true
+
+[params]
+	# is simpleCSSURL not set, will use https://cdn.simplecss.org/simple.min.css
+	# simpleCSSURL = "/simple.min.css"
+	# 
+	# commentText = 'For comments, please send me <a href="mailto:~lindsay/public-inbox@lists.sr.ht">an email</a>.'
+	
+	dateformNumTime = "2006-01-02 15:04 -0700"
+	footerCopyright = '<a href="https://github.com/hartlottery" target="_blank" rel="noopener">M-x</a>'
+
+[[menu.main]]
+	name = "[->+<]"
+	url = "/"
+	weight = 1
+[[menu.main]]
+	name = "About"
+	url = "about"
+	weight = 2
+
+[permalinks]
+        posts = ':year/:filename'

@@ -1,0 +1,32 @@
+{{ define "header" }}
+{{ partialCached "header.html" . }}
+{{ end }}
+
+{{define "main"}}
+{{- partial "header.html" . -}}
+<main>
+  {{- if .Content }}
+	<div>
+		{{ .Content }}
+	</div>
+  {{- end }}
+  {{- range .Data.Pages.GroupByDate "2006" }}
+  <div>
+    <div id="{{ .Key }}">{{ .Key }}</div>
+    {{- range where .Pages "Section" "posts"}}
+    <ul>
+      {{- range .Pages }}
+      <li>
+        <a href="{{.Permalink}}">{{.Title}}</a>
+      </li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  {{- end }}
+</main>
+{{end}}
+
+{{ define "footer" }}
+{{ partialCached "footer.html" . }}
+{{ end }}

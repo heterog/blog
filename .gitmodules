@@ -1,0 +1,6 @@
+[submodule "themes/diary"]
+	path = themes/diary
+	url = https://github.com/AmazingRise/hugo-theme-diary.git
+[submodule "themes/hortensia"]
+	path = themes/hortensia
+	url = https://git.lin.moe/hortensia
