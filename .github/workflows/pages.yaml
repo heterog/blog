@@ -24,7 +24,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify
+        run: TZ=Asia/Shanghai hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
