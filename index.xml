@@ -1,4 +1,177 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Heaven Is</title><link>https://error.iorw.io/</link><description>Recent content on Heaven Is</description><generator>Hugo -- gohugo.io</generator><language>zh-hans</language><copyright>unlicense yet.</copyright><lastBuildDate>Sat, 17 Dec 2022 17:10:42 +0800</lastBuildDate><atom:link href="https://error.iorw.io/" rel="self" type="application/rss+xml"/><item><title>浅入 x86 内存序</title><link>https://error.iorw.io/2022/12-17-memory-order-in-x86/</link><pubDate>Sat, 17 Dec 2022 17:10:42 +0800</pubDate><guid>https://error.iorw.io/2022/12-17-memory-order-in-x86/</guid><description>&lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">[WARN] Using deprecated method `memory-order&amp;#39;, it might be removed in the future.
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Heaven Is</title><link>https://error.iorw.io/</link><description>Recent content on Heaven Is</description><generator>Hugo -- gohugo.io</generator><language>zh-hans</language><copyright>unlicense yet.</copyright><lastBuildDate>Sun, 18 Jun 2023 14:46:01 +0800</lastBuildDate><atom:link href="https://error.iorw.io/" rel="self" type="application/rss+xml"/><item><title>混乱中立与 Emacs</title><link>https://error.iorw.io/2023/06-18-weird-emacs-workflow/</link><pubDate>Sun, 18 Jun 2023 14:46:01 +0800</pubDate><guid>https://error.iorw.io/2023/06-18-weird-emacs-workflow/</guid><description>
+&lt;figure>
+&lt;img src="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" alt="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" title="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" />&lt;figcaption>
+Meow! &lt;a href="https://pixabay.com/photos/cat-paw-keyboard-playful-nasty-3695040">Lemonsandtea&lt;/a>
+&lt;/figcaption>
+&lt;/figure>
+&lt;div id="outline-container-headline-1" class="outline-2">
+&lt;h2 id="headline-1">
+Why Emacs
+&lt;/h2>
+&lt;div id="outline-text-headline-1" class="outline-text-2">
+&lt;p>
+人类关于 Emacs、Vim 甚至是 VSCode 的争议从未休止，毕竟工具往往跟效率关系密切。对我而言，起初只是想试一试传闻中的 Emacs，看它到底有几分威力，在折腾过如&lt;a href="https://github.com/redguardtoo/emacs.d">陈斌&lt;/a>大佬、&lt;a href="https://github.com/doomemacs/doomemacs">Doom Emacs&lt;/a> 等等配置之后，逐渐开始有点“上头”，开始将日常工作流都迁移到 Emacs 上去。&lt;/p>
+&lt;p>
+对我来说，Emacs 有这么几个有意思的点：&lt;/p>
+&lt;ol>
+&lt;li>几乎所有的 buffer、函数、变量等等都是共享的，这让 hack 变得轻松&lt;/li>
+&lt;li>Emacs Lisp 有着很不错的表达能力，配合各种文本函数，很轻易地可以写出自己想要的功能&lt;/li>
+&lt;li>为了让你能更舒服的 hacking，甚至提供了如 &lt;code>advice-add&lt;/code> 这样的 hijack 功能&lt;/li>
+&lt;/ol>
+&lt;p>在我看来，Emacs 几乎就是为了让你折腾它而诞生的，打开 Emacs 总会不自觉地开启 &lt;code>.emacs.d&lt;/code> 文件夹（笑），毕竟，当你用的不爽的时候，Emacs 真的允许你去修改。&lt;/p>
+&lt;p>
+当然，过度的灵活性也是 Emacs 的最大缺点－它违背了 UNIX 哲学：&lt;/p>
+&lt;blockquote>
+&lt;p>Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new &amp;#34;features&amp;#34;.&lt;/p>
+&lt;/blockquote>
+&lt;p>
+Emacs 作为文本编辑器是不够“纯粹”的，但我个人认为，模块化设计跟效率有着天然的冲突，选择 Emacs 就需要接收模块化不够的问题。就像大家偏好使用 IDE 一样，效率的来源往往就是多个小模块的拼合。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-2" class="outline-2">
+&lt;h2 id="headline-2">
+help-with-tutorial
+&lt;/h2>
+&lt;div id="outline-text-headline-2" class="outline-text-2">
+&lt;p>
+实际上 Emacs 你只需要掌握 &lt;code>M-x&lt;/code> 这么一个快捷键就可以了（认真脸），几乎所有的快捷键都是在执行某个 &lt;code>(interactive)&lt;/code> 命令。比如 &lt;code>C-n&lt;/code> 就是 &lt;code>next-line&lt;/code> ，~C-s~ 就是 &lt;code>isearch-forward&lt;/code> ，如此。&lt;/p>
+&lt;p>
+我自己对 Vim 实际上不是很熟，连 &lt;code>ciw&lt;/code> 这种这么好用的命令我都是学 Emacs 的时候发现的，因此选择了走一遍 &lt;code>help-with-tutorial&lt;/code> ；如果你比较熟悉 Vim 的话可以直接使用 Doom Emacs 配置来快速入门。&lt;/p>
+&lt;p>
+当然，还有必不可少的 Emacs Lisp，这个语言可能对习惯类 C 语言的人来说会很不适应，我感觉是跟函数式类的语言更为接近（虽然多数时候都是按过程式的思维在写 hhhh）。比如：&lt;/p>
+&lt;ol>
+&lt;li>没有 &lt;code>return&lt;/code> 这样的东东，函数的返回值就是最后 eval 的表达式的值&lt;/li>
+&lt;li>最基础的数组和 dict 之类的数据结构表达偏向函数式（例如 &lt;code>car/cdr&lt;/code> 这样的函数）&lt;/li>
+&lt;li>括号太多（雾）&lt;/li>
+&lt;li>Many, many more&lt;/li>
+&lt;/ol>
+&lt;p>我的做法是照葫芦画瓢，因为我自身学过一定的 Haskell 这类函数式语言，上手起来没有太多问题。如果觉得 hack 起来有点困难的话，可以参考 &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html">Emacs Lisp 手册&lt;/a>来学习一下，或者别忘了还有 ChatGPT 可以利用。&lt;/p>
+&lt;p>
+P.S. 可能 Emacs 的 Common Lisp 扩展会让敲代码的体验好一些，无责任推荐（。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-3" class="outline-2">
+&lt;h2 id="headline-3">
+Prelude -&amp;gt; Postlude
+&lt;/h2>
+&lt;div id="outline-text-headline-3" class="outline-text-2">
+&lt;p>
+在尝试了很多配置之后，都感觉不是很“贴合”自己，尤其是大家似乎都很喜欢 Evil，但我自己更偏爱原生的键位，因为它泛用性比较强，在 &lt;code>bash/zsh&lt;/code> 这类终端下默认就可以使用。因此敲定了 &lt;a href="https://github.com/hartlottery/postlude">Prelude&lt;/a> 作为框架，在此基础上修改。&lt;/p>
+&lt;p>
+我自己的一些“所谓的”哲学理念（可能有点 bullsht）：&lt;/p>
+&lt;div id="outline-container-headline-4" class="outline-3">
+&lt;h3 id="headline-4">
+Modalka
+&lt;/h3>
+&lt;div id="outline-text-headline-4" class="outline-text-3">
+&lt;p>
+为了小拇指的健康，避免因 Control 键按太多而承受不住（雾），一个 modal editing 还是相当有必要的。所谓 modal editing，其实就是给“编辑”这个操作分模式，像 Vim 有 Normal 和 Insert。&lt;/p>
+&lt;p>
+选择 &lt;a href="https://github.com/mrkkrp/modalka">Modalka&lt;/a> 的原因也很简单，因为它侵入性没有像 Evil 或者 god-mode 那样强，留有了更多的自定义空间。基本仿照着作者本人的配置，映射的基本是 Emacs 的原生键位，但是将常用的 &lt;code>x&lt;/code> 和 &lt;code>c&lt;/code> 键映射为了像 god-mode 那样的 &lt;code>C-x&lt;/code> 前缀调用。&lt;/p>
+&lt;p>
+因为我自己 LWin 键用的并不多，所以直接将它映射为 &lt;code>&amp;lt;menu&amp;gt;&lt;/code> 键并用来切换 modalka-mode，同时映射 &lt;code>&amp;lt;insert&amp;gt;&lt;/code> 作为 fallback 按键，这样就能通过左手手掌按压来快速切换了。&lt;/p>
+&lt;p>
+P.S. 不过其实发现自己好像 modal 模式用的不是很频繁，Control 键按的依然“欢快”。可能确实习惯了统一快捷键的方式（？），不过为了小拇指，还是多切切习惯习惯好了。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-5" class="outline-3">
+&lt;h3 id="headline-5">
+Workspace
+&lt;/h3>
+&lt;div id="outline-text-headline-5" class="outline-text-3">
+&lt;p>
+工作区则相当接近 i3 这样的配置，不过因为主力系统是 Windows（不要问为什么，我也很想换，但是万恶阿里郎），因此没办法利用 Win 键切换，所以还是用的快件键切换。&lt;/p>
+&lt;p>
+使用了 Emacs 默认的 &lt;code>tab-bar-mode&lt;/code> 来管理工作区，通过 &lt;code>C-m 1&lt;/code> 这样的快捷键切换。而窗口则使用 &lt;code>winum&lt;/code> 插件配合 &lt;code>M-1&lt;/code> 这样的快捷键快速切换。&lt;/p>
+&lt;p>
+这么选择主要是感觉日常中切换工作区的频率，相对与切换窗口来说要少一点（虽说如此，我还是很想像 i3 那样的全都要）。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-6" class="outline-3">
+&lt;h3 id="headline-6">
+Region
+&lt;/h3>
+&lt;div id="outline-text-headline-6" class="outline-text-3">
+&lt;p>
+日常改代码的时候，最重要的其实就是 region 的操控，如 Vim 经常被使用的 &lt;code>cw&lt;/code> 命令。因此选定了使用 &lt;a href="https://github.com/magnars/expand-region.el">expand-region.el&lt;/a> 来快速选择区域，这部分借鉴了 &lt;a href="https://github.com/meow-edit/meow">Meow&lt;/a> 的设计哲学，先选定区域，再决定动作。当然也从 Meow 那“抄”来了 &lt;code>meow-inner-of-thing&lt;/code> 作为备选。&lt;/p>
+&lt;blockquote>
+&lt;p>Vim 的逻辑是，我想进行一个替换的操作，作用在一个单词上；&lt;/p>
+&lt;p>
+Meow 的逻辑则是，我选定了一个单词，对它进行替换的操作；&lt;/p>
+&lt;p>
+这两种逻辑没有对错，只有针对自己而言是否习惯，我就更偏向于 Meow 的逻辑。&lt;/p>
+&lt;/blockquote>
+&lt;p>
+当然也缝合了 &lt;a href="https://github.com/oantolin/embark">Embark&lt;/a> 来进行操作，但是实际上目前用的并不多，只是搜索符号的时候代替 Vim 的 &lt;code>*/#&lt;/code> 这样的命令。在考虑是否要咔嚓掉 hhhh。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-7" class="outline-3">
+&lt;h3 id="headline-7">
+Jump
+&lt;/h3>
+&lt;div id="outline-text-headline-7" class="outline-text-3">
+&lt;p>
+大家好像都很喜欢用 &lt;a href="https://github.com/abo-abo/avy">avy&lt;/a> 来跳转，经过一些小代码浏览的经验，目前我习惯的跳转方式有：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>C-;&lt;/code> 跳转到同一行（或者上下两行）的 word 上&lt;/li>
+&lt;li>&lt;code>C-&amp;#39;&lt;/code> 任意单词跳转&lt;/li>
+&lt;li>&lt;code>C-u X C-n/p&lt;/code> 配合相对行号快速跳转（其实目前这个用的更多，可能是目前对“行”的操作更多）&lt;/li>
+&lt;li>&lt;code>C-j d/r&lt;/code> 跳转 + 转到定义或引用，来自 &lt;a href="https://github.com/MaskRay/Config">MaskRay&lt;/a> 大佬的配置&lt;/li>
+&lt;/ul>
+&lt;p>除此之外也配置了很多其他的跳转方式，但是感觉都不怎么用的样子，主要是我目前还没有完全想好真正高效的定位方式，是 avy 这样更快，亦或是 Emacs 本身的操作就足够了，还是“组合拳”更为适应？&lt;/p>
+&lt;p>
+现在而言，我尽量遵循 &lt;strong>Jump more, move less&lt;/strong> 的原则，尽量地使用跳转代替 &lt;code>C-f&lt;/code> 等操作，当然在正常编辑中一些小错误的修正还是离不开 &lt;code>C-f&lt;/code> 等。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-8" class="outline-3">
+&lt;h3 id="headline-8">
+&lt;span class="todo">TODO&lt;/span>
+Next
+&lt;/h3>
+&lt;div id="outline-text-headline-8" class="outline-text-3">
+&lt;p>
+目前比较纠结要不要把 Meow 替换掉 Modalka，因为它的设计思想确实比较对我，但是又感觉实际上我只是喜欢它的选择模式，有了 &lt;code>expand-region.el&lt;/code> 之后似乎也不那么必需了。我也把 Vim 的 &lt;code>c&lt;/code> 键挪到了 Modalka 上，这样操作区域就更简单了。&lt;/p>
+&lt;p>
+还有需要酌定的就是所谓的 Ergo，即人体工程学，之前尝试了一下 &lt;a href="https://github.com/jyp/boon">Boon&lt;/a> 发现好像没有必要为了省一点的手指挪动距离而放弃养成的习惯。&lt;/p>
+&lt;p>
+P.S. 走了一遍 Boon 的 Tutor 才明白，原来手指尽量不移动 + 左右按键分配均衡，就叫做人体工程学键位了。。好吧，我还像试试 Dvorak/Colemark/Workman 的说。&lt;/p>
+&lt;p>
+另外 IDE 常用的向前向后跳转还暂时没有去弄，因为像 &lt;code>better-jumper&lt;/code> 这样的插件都需要自己手动 mark 跳跃点才行，想想还是有一定工作量的。依然还在磨合期（。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-9" class="outline-2">
+&lt;h2 id="headline-9">
+Devil
+&lt;/h2>
+&lt;div id="outline-text-headline-9" class="outline-text-2">
+&lt;p>
+来自 &lt;a href="http://web.archive.org/web/20180602132306/https://plus.google.com/+LinusTorvalds/posts/iySKQGtkmtb">Linus Torvalds&lt;/a>：&lt;/p>
+&lt;blockquote>
+&lt;p>So for the other three people out there using &amp;#34;uEmacs/PK&amp;#34; (not to be confused with real emacs, which is the tool of the devil), you can now get a shiny new version of the same old cruddy editor, but now it actually edits UTF8.&lt;/p>
+&lt;/blockquote>
+&lt;p>
+我尝试编译了一份 &lt;a href="https://github.com/torvalds/uemacs">torvalds/uemacs&lt;/a> 玩玩，发现它真的很纯粹（纯粹到按键绑定全都是硬编码在 C 文件里的），而且贯彻着上述“只做一件事”的 UNIX 哲学。也难怪 Linus 会如此评价 Emacs（。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-10" class="outline-2">
+&lt;h2 id="headline-10">
+混乱中立
+&lt;/h2>
+&lt;div id="outline-text-headline-10" class="outline-text-2">
+&lt;p>
+配置久了之后就有一点感受是，当能完全自定义自己的 workflow 时，我发现选择突然太多了，自己似乎无法定夺到底哪种才是更好的，导致自己的配置存在各种“混乱”，很多功能相互重叠，甚至是用不上但感觉又能提升效率。&lt;/p>
+&lt;p>
+也就是有了一点所谓的 Premature Optimization 的感觉，明明应该是提升效率的，可是最后却被束缚了。思来想去还是觉得，方法是拿来解决问题的，还是回归我遇到的问题本身，再进行客制化吧。&lt;/p>
+&lt;p>
+可能是 Emacs 天然独有的混乱中立，它可以是为你提升效率的善良天使，也可以是给你捣乱让你反而被束缚住的邪恶魔鬼。&lt;/p>
+&lt;p>
+给自己的谨记： &lt;strong>工具始终是拿来解决问题，而非折磨自己的&lt;/strong> 。&lt;/p>
+&lt;p>
+&lt;em>May the Emacs be with you.&lt;/em>&lt;/p>
+&lt;/div>
+&lt;/div></description></item><item><title>浅入 x86 内存序</title><link>https://error.iorw.io/2022/12-17-memory-order-in-x86/</link><pubDate>Sat, 17 Dec 2022 17:10:42 +0800</pubDate><guid>https://error.iorw.io/2022/12-17-memory-order-in-x86/</guid><description>&lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">[WARN] Using deprecated method `memory-order&amp;#39;, it might be removed in the future.
 &lt;/code>&lt;/pre>&lt;h2 id="内存序memory-order">内存序（Memory Order）&lt;/h2>
 &lt;p>在 x86 中，内存屏障通常是不需要的，因为 x86 是比较严格的 TSO（不完全，因为始终没有“官宣”，但是按照定义来说比较接近，而且不同的厂商如 AMD/Intel 之间的实现也存在略微差别）。&lt;/p>
 &lt;p>百度找到了一份 &lt;a href="https://www.cis.upenn.edu/~devietti/classes/cis601-spring2016/sc_tso.pdf">sc_tso.pdf&lt;/a> 讲述了 TSO 的一些特点，其中包括程序顺序（program order）与内存序（memory order）之间的关系：&lt;/p>
@@ -72,67 +245,67 @@ Write C.3
 &lt;/code>&lt;/pre>&lt;p>P.S. 第四点的“因果律”可能一开始让人觉得有点摸不着头脑，可以参考 &lt;a href="https://stackoverflow.com/a/27374794">Stack Overflow&lt;/a> 的例子来了解，实际上就是保证如果单个变量写入且能被正确观测到，那么前面所有的变量写入都应该可以被观测到。个人理解 x86 在多核心的内存序上相对比较“难预测”，内存序依赖于观测到的值，也就是只有在“看”到了实际的值之后，才能知道哪些变量被正确地写入了。&lt;/p>
 &lt;h2 id="一个栗子">一个栗子&lt;/h2>
 &lt;p>一个我觉得很有“意思”的例子，来源一个知乎文章，介绍&lt;a href="https://zhuanlan.zhihu.com/p/454564295">内存屏障&lt;/a>所用的，原文代码有点乱，这里重新格式化并稍微精简了一下：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define _GNU_SOURCE
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;sched.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;pthread.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;assert.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">volatile&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> x, y, r1, r2;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> pthread_barrier_t barrier_start;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> pthread_barrier_t barrier_end;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">thread1&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">*&lt;/span> a) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pthread_barrier_wait(&lt;span style="color:#f92672">&amp;amp;&lt;/span>barrier_start);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// run1
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> r1 &lt;span style="color:#f92672">=&lt;/span> y;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pthread_barrier_wait(&lt;span style="color:#f92672">&amp;amp;&lt;/span>barrier_end);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> NULL;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">thread2&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">*&lt;/span> a) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pthread_barrier_wait(&lt;span style="color:#f92672">&amp;amp;&lt;/span>barrier_start);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// run2
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> y &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> r2 &lt;span style="color:#f92672">=&lt;/span> x;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pthread_barrier_wait(&lt;span style="color:#f92672">&amp;amp;&lt;/span>barrier_end);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> NULL;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assert(pthread_barrier_init(&lt;span style="color:#f92672">&amp;amp;&lt;/span>barrier_start, NULL, &lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assert(pthread_barrier_init(&lt;span style="color:#f92672">&amp;amp;&lt;/span>barrier_end, NULL, &lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pthread_t t1;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pthread_t t2;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assert(pthread_create(&lt;span style="color:#f92672">&amp;amp;&lt;/span>t1, NULL, thread1, NULL) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assert(pthread_create(&lt;span style="color:#f92672">&amp;amp;&lt;/span>t2, NULL, thread2, NULL) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cpu_set_t cs;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> CPU_ZERO(&lt;span style="color:#f92672">&amp;amp;&lt;/span>cs);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> CPU_SET(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>cs);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assert(pthread_setaffinity_np(t1, &lt;span style="color:#66d9ef">sizeof&lt;/span>(cs), &lt;span style="color:#f92672">&amp;amp;&lt;/span>cs) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> CPU_ZERO(&lt;span style="color:#f92672">&amp;amp;&lt;/span>cs);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> CPU_SET(&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>cs);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> assert(pthread_setaffinity_np(t2, &lt;span style="color:#66d9ef">sizeof&lt;/span>(cs), &lt;span style="color:#f92672">&amp;amp;&lt;/span>cs) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// start()
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> x &lt;span style="color:#f92672">=&lt;/span> y &lt;span style="color:#f92672">=&lt;/span> r1 &lt;span style="color:#f92672">=&lt;/span> r2 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pthread_barrier_wait(&lt;span style="color:#f92672">&amp;amp;&lt;/span>barrier_start);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pthread_barrier_wait(&lt;span style="color:#f92672">&amp;amp;&lt;/span>barrier_end);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// end()
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> assert(&lt;span style="color:#f92672">!&lt;/span>(r1 &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> r2 &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>));
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// gcc xxx.c -O2 -pthread &amp;amp;&amp;amp; ./a.out
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define _GNU_SOURCE
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;sched.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;pthread.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;assert.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">volatile&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">r1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">r2&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">static&lt;/span> &lt;span class="n">pthread_barrier_t&lt;/span> &lt;span class="n">barrier_start&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">static&lt;/span> &lt;span class="n">pthread_barrier_t&lt;/span> &lt;span class="n">barrier_end&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">static&lt;/span> &lt;span class="kt">void&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="nf">thread1&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pthread_barrier_wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">barrier_start&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// run1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">r1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pthread_barrier_wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">barrier_end&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">static&lt;/span> &lt;span class="kt">void&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="nf">thread2&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pthread_barrier_wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">barrier_start&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// run2
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">r2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pthread_barrier_wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">barrier_end&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">assert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pthread_barrier_init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">barrier_start&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">assert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pthread_barrier_init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">barrier_end&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pthread_t&lt;/span> &lt;span class="n">t1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pthread_t&lt;/span> &lt;span class="n">t2&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">assert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pthread_create&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">t1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">thread1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">assert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pthread_create&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">t2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">thread2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cpu_set_t&lt;/span> &lt;span class="n">cs&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">CPU_ZERO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">cs&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">CPU_SET&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">cs&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">assert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pthread_setaffinity_np&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">t1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cs&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">cs&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">CPU_ZERO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">cs&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">CPU_SET&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">cs&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">assert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pthread_setaffinity_np&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">t2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cs&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">cs&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// start()
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">r1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">r2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pthread_barrier_wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">barrier_start&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pthread_barrier_wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">barrier_end&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// end()
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">assert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">r1&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">r2&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// gcc xxx.c -O2 -pthread &amp;amp;&amp;amp; ./a.out
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>根据原作者阐述，这段程序必定会产生 &lt;code>end()&lt;/code> 处引发的断言错误。那么我们来对着上面的多核心下的内存模型稍微解释一下吧，根据上面的定义，线程 t1 和线程 t2 同时写入变量 &lt;code>x&lt;/code> 与 &lt;code>y&lt;/code>，那么真实的写入顺序有可能是先写 &lt;code>x&lt;/code> 或是先写 &lt;code>y&lt;/code>；不过重点还是“读”的顺序，按照前文关于 Store-Load 序的解释，&lt;code>r1&lt;/code> 和 &lt;code>r2&lt;/code> &lt;strong>不一定&lt;/strong>会读到写入的值（因为不是同一个核心)，x86 内存模型只保证假设真实内存写入顺序为 &lt;code>x = 1; y = 1&lt;/code>，那么如果 &lt;code>r1&lt;/code> 读到 &lt;code>y == 1&lt;/code>，则 &lt;code>r2&lt;/code> 必定也能读到 &lt;code>x == 1&lt;/code>。&lt;/p>
 &lt;p>另外按照 SDM 官方的说法（位于 Volume 3 8.2.3.4），&lt;/p>
 &lt;blockquote>
@@ -140,15 +313,15 @@ Write C.3
 &lt;/blockquote>
 &lt;p>也就是说对于一个核心而言，只有在&lt;strong>该核心&lt;/strong>上读写同一地址才是顺序的；否则就算多核心都读写同一地址，中间都有可能发生乱序。这两种解释都是行得通的。&lt;/p>
 &lt;p>解决方法可以是下面所述的内存屏障，即在写入 &lt;code>x&lt;/code> 或 &lt;code>y&lt;/code> 后引入内存屏障，保证下一条读指令执行前完成写入，即：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// t1/run1
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>__asm__ &lt;span style="color:#a6e22e">__volatile__&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;mfence&amp;#34;&lt;/span> &lt;span style="color:#f92672">:::&lt;/span> &lt;span style="color:#e6db74">&amp;#34;memory&amp;#34;&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>r1 &lt;span style="color:#f92672">=&lt;/span> y;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// t2/run2
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>y &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>__asm__ &lt;span style="color:#a6e22e">__volatile__&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;mfence&amp;#34;&lt;/span> &lt;span style="color:#f92672">:::&lt;/span> &lt;span style="color:#e6db74">&amp;#34;memory&amp;#34;&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>r2 &lt;span style="color:#f92672">=&lt;/span> x;
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// t1/run1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__asm__&lt;/span> &lt;span class="nf">__volatile__&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;mfence&amp;#34;&lt;/span> &lt;span class="o">:::&lt;/span> &lt;span class="s">&amp;#34;memory&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">r1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// t2/run2
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__asm__&lt;/span> &lt;span class="nf">__volatile__&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;mfence&amp;#34;&lt;/span> &lt;span class="o">:::&lt;/span> &lt;span class="s">&amp;#34;memory&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">r2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样一来，所有可能的路径都不再会产生 &lt;code>r1&lt;/code> 和 &lt;code>r2&lt;/code> 同时为零的情况了：&lt;/p>
 &lt;ol>
 &lt;li>t1 执行到 &lt;code>x = 1&lt;/code>，t2 执行到 &lt;code>mfence&lt;/code>，那么 t1 必然能保证 &lt;code>r1 = y = 1&lt;/code>，因为 t2 使用了 &lt;code>mfence&lt;/code> 强制 CPU 按照 &lt;code>x = 1; r2 = x&lt;/code> 的顺序执行（如果没有 &lt;code>mfence&lt;/code> 就可能会出现 &lt;code>r2 = x; r1 = y; x = 1; y = 1&lt;/code> 的内存读写顺序出现）&lt;/li>
@@ -235,42 +408,42 @@ Write C.3
 &lt;p>P.P.S. 有一个 &lt;code>PREFETCH&lt;/code> 指令可以显式地将部分内存载入到缓存中，这也是在内核代码里看到很多 prefetch 的原理。具体可以看指令说明。&lt;/p>
 &lt;h2 id="follymemcpys">folly/memcpy.S&lt;/h2>
 &lt;p>这里我的兴趣点在于 &lt;code>.L_NON_TEMPORAL_LOOP&lt;/code> 这个 label 上，首先可以找到哪里会跳转到这里来：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-nasm" data-lang="nasm">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#a6e22e">This&lt;/span> threshold is half of L1 cache on a Skylake machine, which means that
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#a6e22e">potentially&lt;/span> all of L1 will be populated by this copy once it is executed
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">(&lt;/span>&lt;span style="color:#a6e22e">dst&lt;/span> and src are cached for temporal copies).
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">#&lt;/span>&lt;span style="color:#a6e22e">define&lt;/span> NON_TEMPORAL_STORE_THRESHOLD &lt;span style="color:#66d9ef">$&lt;/span>&lt;span style="color:#ae81ff">32768&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">cmp&lt;/span> NON_TEMPORAL_STORE_THRESHOLD, &lt;span style="color:#f92672">%&lt;/span>rdx
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">jae&lt;/span> .L_NON_TEMPORAL_LOOP
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-nasm" data-lang="nasm">&lt;span class="line">&lt;span class="cl">&lt;span class="err">//&lt;/span> &lt;span class="nf">This&lt;/span> &lt;span class="nv">threshold&lt;/span> &lt;span class="nv">is&lt;/span> &lt;span class="nv">half&lt;/span> &lt;span class="nv">of&lt;/span> &lt;span class="nv">L1&lt;/span> &lt;span class="nv">cache&lt;/span> &lt;span class="nv">on&lt;/span> &lt;span class="nv">a&lt;/span> &lt;span class="nv">Skylake&lt;/span> &lt;span class="nv">machine&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">which&lt;/span> &lt;span class="nv">means&lt;/span> &lt;span class="nv">that&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">//&lt;/span> &lt;span class="nf">potentially&lt;/span> &lt;span class="nb">al&lt;/span>&lt;span class="nv">l&lt;/span> &lt;span class="nv">of&lt;/span> &lt;span class="nv">L1&lt;/span> &lt;span class="nv">will&lt;/span> &lt;span class="nv">be&lt;/span> &lt;span class="nv">populated&lt;/span> &lt;span class="nv">by&lt;/span> &lt;span class="nv">this&lt;/span> &lt;span class="nv">copy&lt;/span> &lt;span class="nv">once&lt;/span> &lt;span class="nv">it&lt;/span> &lt;span class="nv">is&lt;/span> &lt;span class="nv">executed&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">//&lt;/span> &lt;span class="err">(&lt;/span>&lt;span class="nf">dst&lt;/span> &lt;span class="nv">and&lt;/span> &lt;span class="nv">src&lt;/span> &lt;span class="nv">are&lt;/span> &lt;span class="nv">cached&lt;/span> &lt;span class="nv">for&lt;/span> &lt;span class="nv">temporal&lt;/span> &lt;span class="nv">copies&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">#&lt;/span>&lt;span class="nf">define&lt;/span> &lt;span class="nv">NON_TEMPORAL_STORE_THRESHOLD&lt;/span> &lt;span class="kc">$&lt;/span>&lt;span class="mi">32768&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">cmp&lt;/span> &lt;span class="nv">NON_TEMPORAL_STORE_THRESHOLD&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nb">rdx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">jae&lt;/span> &lt;span class="nv">.L_NON_TEMPORAL_LOOP&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>也就是说当我们 &lt;code>memcpy&lt;/code> 的大小超过了 L1 缓存（folly 取了 Skylake 作为基准）后，就不再借助缓存去拷贝了，而是直接利用上述的 &lt;code>MOVNTx&lt;/code> 系列的 NT 指令绕过缓存，实现比较高性能的拷贝：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-nasm" data-lang="nasm">&lt;span style="display:flex;">&lt;span>.L_NON_TEMPORAL_LOOP:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">testb&lt;/span> &lt;span style="color:#66d9ef">$&lt;/span>&lt;span style="color:#ae81ff">31&lt;/span>, &lt;span style="color:#f92672">%&lt;/span>sil
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">jne&lt;/span> .L_ALIGNED_DST_LOOP
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#a6e22e">This&lt;/span> is prefetching the source data unlike ALIGNED_DST_LOOP which
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#a6e22e">prefetches&lt;/span> the destination data. This choice is again informed by
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#a6e22e">benchmarks.&lt;/span> With a non&lt;span style="color:#f92672">-&lt;/span>temporal store the entirety of the cache line
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#a6e22e">is&lt;/span> being written so the previous data can be discarded without being
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#a6e22e">fetched.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">prefetchnta&lt;/span> &lt;span style="color:#ae81ff">128&lt;/span>(&lt;span style="color:#f92672">%&lt;/span>rsi)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">prefetchnta&lt;/span> &lt;span style="color:#ae81ff">196&lt;/span>(&lt;span style="color:#f92672">%&lt;/span>rsi)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vmovntdqa&lt;/span> (&lt;span style="color:#f92672">%&lt;/span>rsi), &lt;span style="color:#f92672">%&lt;/span>ymm0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vmovntdqa&lt;/span> &lt;span style="color:#ae81ff">32&lt;/span>(&lt;span style="color:#f92672">%&lt;/span>rsi), &lt;span style="color:#f92672">%&lt;/span>ymm1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vmovntdqa&lt;/span> &lt;span style="color:#ae81ff">64&lt;/span>(&lt;span style="color:#f92672">%&lt;/span>rsi), &lt;span style="color:#f92672">%&lt;/span>ymm2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vmovntdqa&lt;/span> &lt;span style="color:#ae81ff">96&lt;/span>(&lt;span style="color:#f92672">%&lt;/span>rsi), &lt;span style="color:#f92672">%&lt;/span>ymm3
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">add&lt;/span> &lt;span style="color:#66d9ef">$&lt;/span>&lt;span style="color:#ae81ff">128&lt;/span>, &lt;span style="color:#f92672">%&lt;/span>rsi
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vmovntdq&lt;/span> &lt;span style="color:#f92672">%&lt;/span>ymm0, (&lt;span style="color:#f92672">%&lt;/span>rdi)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vmovntdq&lt;/span> &lt;span style="color:#f92672">%&lt;/span>ymm1, &lt;span style="color:#ae81ff">32&lt;/span>(&lt;span style="color:#f92672">%&lt;/span>rdi)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vmovntdq&lt;/span> &lt;span style="color:#f92672">%&lt;/span>ymm2, &lt;span style="color:#ae81ff">64&lt;/span>(&lt;span style="color:#f92672">%&lt;/span>rdi)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vmovntdq&lt;/span> &lt;span style="color:#f92672">%&lt;/span>ymm3, &lt;span style="color:#ae81ff">96&lt;/span>(&lt;span style="color:#f92672">%&lt;/span>rdi)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">add&lt;/span> &lt;span style="color:#66d9ef">$&lt;/span>&lt;span style="color:#ae81ff">128&lt;/span>, &lt;span style="color:#f92672">%&lt;/span>rdi
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">cmp&lt;/span> &lt;span style="color:#f92672">%&lt;/span>r8, &lt;span style="color:#f92672">%&lt;/span>rsi
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">jb&lt;/span> .L_NON_TEMPORAL_LOOP
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">sfence&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">jmp&lt;/span> .L_ALIGNED_DST_LOOP_END
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-nasm" data-lang="nasm">&lt;span class="line">&lt;span class="cl">&lt;span class="nl">.L_NON_TEMPORAL_LOOP:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">testb&lt;/span> &lt;span class="kc">$&lt;/span>&lt;span class="mi">31&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nb">si&lt;/span>&lt;span class="nv">l&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">jne&lt;/span> &lt;span class="nv">.L_ALIGNED_DST_LOOP&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">//&lt;/span> &lt;span class="nf">This&lt;/span> &lt;span class="nv">is&lt;/span> &lt;span class="nv">prefetching&lt;/span> &lt;span class="nv">the&lt;/span> &lt;span class="nv">source&lt;/span> &lt;span class="nv">data&lt;/span> &lt;span class="nv">unlike&lt;/span> &lt;span class="nb">AL&lt;/span>&lt;span class="nv">IGNED_DST_LOOP&lt;/span> &lt;span class="nv">which&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">//&lt;/span> &lt;span class="nf">prefetches&lt;/span> &lt;span class="nv">the&lt;/span> &lt;span class="nv">destination&lt;/span> &lt;span class="nv">data.&lt;/span> &lt;span class="nv">This&lt;/span> &lt;span class="nb">ch&lt;/span>&lt;span class="nv">oice&lt;/span> &lt;span class="nv">is&lt;/span> &lt;span class="nv">again&lt;/span> &lt;span class="nv">informed&lt;/span> &lt;span class="nv">by&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">//&lt;/span> &lt;span class="nf">benchmarks.&lt;/span> &lt;span class="nv">With&lt;/span> &lt;span class="nv">a&lt;/span> &lt;span class="nv">non&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nv">temporal&lt;/span> &lt;span class="nv">store&lt;/span> &lt;span class="nv">the&lt;/span> &lt;span class="nv">entirety&lt;/span> &lt;span class="nv">of&lt;/span> &lt;span class="nv">the&lt;/span> &lt;span class="nv">cache&lt;/span> &lt;span class="nv">line&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">//&lt;/span> &lt;span class="nf">is&lt;/span> &lt;span class="nv">being&lt;/span> &lt;span class="nv">written&lt;/span> &lt;span class="nv">so&lt;/span> &lt;span class="nv">the&lt;/span> &lt;span class="nv">previous&lt;/span> &lt;span class="nv">data&lt;/span> &lt;span class="nv">can&lt;/span> &lt;span class="nv">be&lt;/span> &lt;span class="nb">di&lt;/span>&lt;span class="nv">scarded&lt;/span> &lt;span class="nv">without&lt;/span> &lt;span class="nv">being&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="err">//&lt;/span> &lt;span class="nf">fetched.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">prefetchnta&lt;/span> &lt;span class="mi">128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rsi&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">prefetchnta&lt;/span> &lt;span class="mi">196&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rsi&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">vmovntdqa&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rsi&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">ymm0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">vmovntdqa&lt;/span> &lt;span class="mi">32&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rsi&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">ymm1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">vmovntdqa&lt;/span> &lt;span class="mi">64&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rsi&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">ymm2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">vmovntdqa&lt;/span> &lt;span class="mi">96&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rsi&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">ymm3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">add&lt;/span> &lt;span class="kc">$&lt;/span>&lt;span class="mi">128&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nb">rsi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">vmovntdq&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">ymm0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rdi&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">vmovntdq&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">ymm1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">32&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rdi&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">vmovntdq&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">ymm2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">64&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rdi&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">vmovntdq&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">ymm3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">96&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">rdi&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">add&lt;/span> &lt;span class="kc">$&lt;/span>&lt;span class="mi">128&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nb">rdi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">cmp&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nv">r8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="nb">rsi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">jb&lt;/span> &lt;span class="nv">.L_NON_TEMPORAL_LOOP&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">sfence&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">jmp&lt;/span> &lt;span class="nv">.L_ALIGNED_DST_LOOP_END&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以看到 folly 借助 &lt;code>movntdqa&lt;/code> 指令将数据读入到 AVX 寄存器 &lt;code>ymmX&lt;/code> 中，再使用 &lt;code>movntdq&lt;/code> 将寄存器的值写回到内存，并循环。最后，注意到这里还有个 &lt;code>sfence&lt;/code> 指令，保证在拷贝完后数据对其他核心可见（但是拷贝途中无法保证，所以可能需要调用着确保不会出现 data race），符合 SDM 上的定义。&lt;/p>
 &lt;p>到此，基本上我们也理解了 x86 的 TSO 内存序（比 SC 弱的地方在于只能保证同一个地址的 Store-Load，但是可以通过 &lt;code>MFENCE&lt;/code> 指令做到所有地址的 Store-Load 以实现 SC）、x86 的内存屏障的作用（通常程序中因为 TSO 的存在没有什么作用，但是对于如 NT 系列的特殊指令需要 weakly-ordered memory，就必须使用内存屏障了；不过为了程序的 portable 性，还是尽量地加上内存屏障操作，也能加深理解）。现在，我们再来尝试理解（困扰我多年的.jpg）C++ &lt;code>std::memory_order&lt;/code> 了。&lt;/p>
 &lt;h2 id="cache">Cache&lt;/h2>
@@ -305,132 +478,132 @@ Write C.3
 &lt;p>这几天按着我半吊子的 haskell 水平稍微研究了一下 monad，还是有点不是很理解，只能浅浅地谈一谈我自己的想法，错误和纰漏难以避免，所谓乱谈是也。&lt;/p>
 &lt;h2 id="the-moand">The Moand&lt;/h2>
 &lt;p>这部分尽量会详细地阐述一下&lt;a href="https://www.zhihu.com/question/19635359/answer/172074046">刘月半大神的这篇文章&lt;/a>，适当的改动了一些例子，首先从 &lt;code>Maybe&lt;/code> 的构造函数开始，&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">data&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> a &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> a &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">data&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kt">Nothing&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中 &lt;code>a&lt;/code> 是一个类型，我们可以“实例化”一个 &lt;code>Maybe Int&lt;/code> 类型出来等等，并且存在两个“构造器”，&lt;code>Just&lt;/code> 和 &lt;code>Nothing&lt;/code>。例如我们可以构造一个 &lt;code>safeDiv&lt;/code> 函数，这个函数作用是保证在遇到除零错误时不会让程序 crash，而是返回一个 &lt;code>Maybe Int&lt;/code> 类型：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">safeDiv&lt;/span> &lt;span style="color:#f92672">::&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">safeDiv&lt;/span> &lt;span style="color:#66d9ef">_&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">safeDiv&lt;/span> x y &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> (x `div` y) &lt;span style="color:#75715e">-- 除法运算符 / 不能作用在 Int 上&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">safeDiv&lt;/span> &lt;span class="ow">::&lt;/span> &lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">safeDiv&lt;/span> &lt;span class="kr">_&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">safeDiv&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="p">`&lt;/span>&lt;span class="n">div&lt;/span>&lt;span class="p">`&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">-- 除法运算符 / 不能作用在 Int 上&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果我们希望一个比较复杂的除法运算中，都能保证除零安全的话，我们可能会写出下面这样的代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- 安全地计算 a/b/c/d/e&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">case&lt;/span> safeDiv a b &lt;span style="color:#66d9ef">of&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Just&lt;/span> x &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">case&lt;/span> safeDiv x c &lt;span style="color:#66d9ef">of&lt;/span> &lt;span style="color:#75715e">-- 如果 b != 0，能够继续进行除法，尝试计算 (a/b)/c&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Just&lt;/span> y &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">case&lt;/span> safeDiv y d &lt;span style="color:#66d9ef">of&lt;/span> &lt;span style="color:#75715e">-- 如果 c != 0，继续尝试计算 (a/b/c)/d&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Just&lt;/span> z &lt;span style="color:#f92672">-&amp;gt;&lt;/span> safeDiv z e &lt;span style="color:#75715e">-- 如果 d != 0，继续尝试计算 (a/b/c/d)/e&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- 安全地计算 a/b/c/d/e&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">case&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="kr">of&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Just&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kr">case&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="kr">of&lt;/span> &lt;span class="c1">-- 如果 b != 0，能够继续进行除法，尝试计算 (a/b)/c&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Just&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kr">case&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">d&lt;/span> &lt;span class="kr">of&lt;/span> &lt;span class="c1">-- 如果 c != 0，继续尝试计算 (a/b/c)/d&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Just&lt;/span> &lt;span class="n">z&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">z&lt;/span> &lt;span class="n">e&lt;/span> &lt;span class="c1">-- 如果 d != 0，继续尝试计算 (a/b/c/d)/e&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以看到代码非常的啰嗦，而且看着很难受（对应过程式语言就是一层又一层的 if 嵌套），有没有办法能优化呢？实际上上面的例子中，我们可以从几个 &lt;code>case&lt;/code> 中提取出一些公共特征（伪代码，&lt;code>{Int}&lt;/code> 表示此处的变量类型为 &lt;code>Int&lt;/code>）：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- 将 safeDiv x c 使用 \x -&amp;gt; safeDiv x c 替换，即可得到最简洁的 Int -&amp;gt; Maybe Int 函数；&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- 因为被 lambda 捕获的量基本都能被视作常量（？）&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">case&lt;/span> {&lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>} &lt;span style="color:#66d9ef">of&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Just&lt;/span> x &lt;span style="color:#f92672">-&amp;gt;&lt;/span> {&lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>} x
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- 将 safeDiv x c 使用 \x -&amp;gt; safeDiv x c 替换，即可得到最简洁的 Int -&amp;gt; Maybe Int 函数；&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- 因为被 lambda 捕获的量基本都能被视作常量（？）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">case&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="kr">of&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Just&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="n">x&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>给上面的类型附上名字和类型，就成了：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&amp;#39;&lt;/span> &lt;span style="color:#f92672">::&lt;/span> (&lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&amp;#39;&lt;/span> f m &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">case&lt;/span> m &lt;span style="color:#66d9ef">of&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Just&lt;/span> x &lt;span style="color:#f92672">-&amp;gt;&lt;/span> f x
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&amp;#39;&lt;/span> &lt;span class="ow">::&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&amp;#39;&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kr">case&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="kr">of&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Just&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="n">x&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>到这里我们就得到了一个 &lt;code>Maybe&lt;/code> 的所谓 functor（函子），&lt;/p>
 &lt;blockquote>
 &lt;p>Maybe 之所以是函子，是因为它可以通过 fmap（functor map）把所有的函数拎到「Maybe 空间」里。&lt;/p>
 &lt;/blockquote>
 &lt;p>有了函子之后，我们尝试把这个抽象应用到我们的例子上去看看：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> x &lt;span style="color:#f92672">=&lt;/span> safeDiv a b &lt;span style="color:#75715e">-- 第一层 a/b&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> y &lt;span style="color:#f92672">=&lt;/span> fmap&amp;#39; (&lt;span style="color:#a6e22e">\&lt;/span>v &lt;span style="color:#f92672">-&amp;gt;&lt;/span> safeDiv v c) x &lt;span style="color:#75715e">-- 第二层 (a/b)/c&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> z &lt;span style="color:#f92672">=&lt;/span> fmap&amp;#39; (&lt;span style="color:#a6e22e">\&lt;/span>v &lt;span style="color:#f92672">-&amp;gt;&lt;/span> safeDiv v d) y &lt;span style="color:#75715e">-- 第三层 (a/b/c)/d&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">in&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fmap&amp;#39; (&lt;span style="color:#a6e22e">\&lt;/span>v &lt;span style="color:#f92672">-&amp;gt;&lt;/span> safeDiv v e) z &lt;span style="color:#75715e">-- 第四层 (a/b/c/d)/e&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">let&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">x&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="c1">-- 第一层 a/b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">y&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">fmap&amp;#39;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="c1">-- 第二层 (a/b)/c&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">z&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">fmap&amp;#39;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="n">d&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="c1">-- 第三层 (a/b/c)/d&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fmap&amp;#39;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">z&lt;/span> &lt;span class="c1">-- 第四层 (a/b/c/d)/e&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>抛开性能不谈（雾），这种写法看起来已经舒服很多了，但是感觉还是“存在进步空间”的样子。也的确，haskell 给我们提供了一个 &lt;code>&amp;gt;&amp;gt;=&lt;/code> 运算符，可以让我们来实现 &lt;code>fmap&lt;/code>，并且再次优化上面的代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- 这是一个中缀运算符，这个例子中 (&amp;gt;&amp;gt;=) m f 等价于 m &amp;gt;&amp;gt;= f；定义与 fmap&amp;#39; 完全一致&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span>) &lt;span style="color:#f92672">::&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> (&lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span>) m f &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">case&lt;/span> m &lt;span style="color:#66d9ef">of&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Just&lt;/span> x &lt;span style="color:#f92672">-&amp;gt;&lt;/span> f x
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- the optimzed version&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">safeDiv&lt;/span> a b &lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span> (&lt;span style="color:#a6e22e">\&lt;/span>v &lt;span style="color:#f92672">-&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> safeDiv v c &lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span> (&lt;span style="color:#a6e22e">\&lt;/span>w &lt;span style="color:#f92672">-&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> safeDiv w d &lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span> (&lt;span style="color:#a6e22e">\&lt;/span>x &lt;span style="color:#f92672">-&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> safeDiv x e)))
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- 这是一个中缀运算符，这个例子中 (&amp;gt;&amp;gt;=) m f 等价于 m &amp;gt;&amp;gt;= f；定义与 fmap&amp;#39; 完全一致&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;=&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">::&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;=&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kr">case&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="kr">of&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Just&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="n">x&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- the optimzed version&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">safeDiv&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">w&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">w&lt;/span> &lt;span class="n">d&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">)))&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>好像，有点反向优化了？没事，haskell 为这个模式设计了 &lt;code>do&lt;/code> 语法糖：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">val&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">do&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> x &lt;span style="color:#f92672">&amp;lt;-&lt;/span> safeDiv a b
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> y &lt;span style="color:#f92672">&amp;lt;-&lt;/span> safeDiv x c
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> z &lt;span style="color:#f92672">&amp;lt;-&lt;/span> safeDiv y d
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> safeDiv z e
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">val&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kr">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">x&lt;/span> &lt;span class="ow">&amp;lt;-&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">y&lt;/span> &lt;span class="ow">&amp;lt;-&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">c&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">z&lt;/span> &lt;span class="ow">&amp;lt;-&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">d&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">z&lt;/span> &lt;span class="n">e&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>简洁，好看，elegant！这就是“所谓的” monad 了！当然，因为标准库里&lt;a href="https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Maybe.html">已经提供&lt;/a>了 &lt;code>instance Monad Maybe&lt;/code> 了，所以最后的代码中，我们不需要再定义任何其他函数了，只需要保留 &lt;code>safeDiv&lt;/code> 就可以了。当然我们也能自行实现各种各样的 functor，有点像是 OOP 的接口一样（笑）。&lt;/p>
 &lt;h2 id="functor-and-monad">Functor and Monad&lt;/h2>
 &lt;p>上面的例子中，我们的 &lt;code>fmap'&lt;/code> 是自己定义的，而官方针对 &lt;a href="https://hackage.haskell.org/package/base-4.17.0.0/docs/src/GHC.Base.html">&lt;code>Maybe&lt;/code> 实现的 &lt;code>fmap&lt;/code>&lt;/a> 是不太一样的：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- | @since 2.01&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">instance&lt;/span> &lt;span style="color:#66d9ef">Functor&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">where&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fmap &lt;span style="color:#66d9ef">_&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fmap f (&lt;span style="color:#66d9ef">Just&lt;/span> a) &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> (f a) &lt;span style="color:#75715e">-- notice here!&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- | @since 2.01&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">instance&lt;/span> &lt;span class="kt">Functor&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kr">where&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fmap&lt;/span> &lt;span class="kr">_&lt;/span> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fmap&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">-- notice here!&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我们的例子中模式匹配项是 &lt;code>Just x -&amp;gt; f x&lt;/code>，但是官方的却是 &lt;code>Just a -&amp;gt; Just (f a)&lt;/code>，后者其实才是标准格式；&lt;code>safeDiv&lt;/code> 这个例子不同是因为我们完全是根据函数类型来“特化”的一个：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- safeDiv version of fmap&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&lt;/span> &lt;span style="color:#f92672">::&lt;/span> (&lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span> &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">Int&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- haskell fmap, f is functor, eq to `Maybe`&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&lt;/span> &lt;span style="color:#f92672">::&lt;/span> (a &lt;span style="color:#f92672">-&amp;gt;&lt;/span> b) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> f a &lt;span style="color:#f92672">-&amp;gt;&lt;/span> f b
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- safeDiv version of fmap&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&lt;/span> &lt;span class="ow">::&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kt">Int&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- haskell fmap, f is functor, eq to `Maybe`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&lt;/span> &lt;span class="ow">::&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="n">b&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以看到差异在第一个参数类型上。这里提这个区别是因为这里要开始区分 functor 和 monad 了。前文的例子中可能大家会觉得 monad 跟 functor 是一回事，实际上是存在差异的。Haskell 定义了 &lt;a href="https://wiki.haskell.org/Functor-Applicative-Monad_Proposal">Functor-Applicative-Monad&lt;/a> 结构，简而言之就是 applicative 必定是 functor，monad 必定是 applicative，三者有继承关系，所以 functor 其实是性质是比较弱的。&lt;/p>
 &lt;p>这部分主要会根据哔站&lt;a href="https://www.bilibili.com/video/BV1qh411q7cS">鹤翔万里的视频&lt;/a>进行一定的细致阐述，也会对前文刘月半大神的文章进行再补充。先从 functor 开始吧，它的作用看上面函数定义就能略知一二了，给定一个一般的函数，让它去处理“装箱”后的类型，并且返回一个同样被装箱了的类型，看 haskell 的 &lt;code>Maybe&lt;/code> 实现就知道了，这里贴出来视频的几个例子：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- instance Functor Maybe&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&lt;/span> (&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>) (&lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&lt;/span> (&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- instance Functor []&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&lt;/span> (&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>) [&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">3&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> [&lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#ae81ff">5&lt;/span>, &lt;span style="color:#ae81ff">6&lt;/span>]
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- instance Functor Maybe&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="mi">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- instance Functor []&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>当然 functor 根据定义，它的局限性就在于只能处理值，对于函数，它只会返回一个装箱后的函数：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&lt;/span> (&lt;span style="color:#f92672">+&lt;/span>) (&lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> (&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>)
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>并且我们无法继续往下进行了：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&lt;/span> (&lt;span style="color:#66d9ef">Just&lt;/span> (&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>)) (&lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">🤯&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="err">🤯&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这时就需要引入 applicative 来处理了，直接看官方定义：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- | @since 2.01&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">instance&lt;/span> &lt;span style="color:#66d9ef">Applicative&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">where&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pure &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Just&lt;/span> f &lt;span style="color:#f92672">&amp;lt;*&amp;gt;&lt;/span> m &lt;span style="color:#f92672">=&lt;/span> fmap f m
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">&amp;lt;*&amp;gt;&lt;/span> _m &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> liftA2 f (&lt;span style="color:#66d9ef">Just&lt;/span> x) (&lt;span style="color:#66d9ef">Just&lt;/span> y) &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> (f x y)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> liftA2 &lt;span style="color:#66d9ef">_&lt;/span> &lt;span style="color:#66d9ef">_&lt;/span> &lt;span style="color:#66d9ef">_&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Just&lt;/span> _m1 &lt;span style="color:#f92672">*&amp;gt;&lt;/span> m2 &lt;span style="color:#f92672">=&lt;/span> m2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">*&amp;gt;&lt;/span> _m2 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- | @since 2.01&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">instance&lt;/span> &lt;span class="kt">Applicative&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kr">where&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pure&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Just&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="o">&amp;lt;*&amp;gt;&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">fmap&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="n">m&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="o">&amp;lt;*&amp;gt;&lt;/span> &lt;span class="n">_m&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">liftA2&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">liftA2&lt;/span> &lt;span class="kr">_&lt;/span> &lt;span class="kr">_&lt;/span> &lt;span class="kr">_&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Just&lt;/span> &lt;span class="n">_m1&lt;/span> &lt;span class="o">*&amp;gt;&lt;/span> &lt;span class="n">m2&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">m2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="o">*&amp;gt;&lt;/span> &lt;span class="n">_m2&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Nothing&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>主要关注 &lt;code>&amp;lt;*&amp;gt;&lt;/code> 这个函数（读作 apply），可以看到 applicative 将 &lt;code>Just (+3)&lt;/code> 里面的 &lt;code>(+3)&lt;/code> 函数给取出来了，然后通过 &lt;code>fmap&lt;/code> 应用函数，这样得到的结果依然是个 &lt;code>Maybe&lt;/code> 类型，it just works。&lt;/p>
 &lt;p>同样，贴上视频中的几个例子当作 memo：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- instance Applicative Maybe&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">Just&lt;/span> (&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">&amp;lt;*&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- instance Applicative []&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[(&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>), (&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)] &lt;span style="color:#f92672">&amp;lt;*&amp;gt;&lt;/span> [&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">3&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> [&lt;span style="color:#ae81ff">3&lt;/span>, &lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#ae81ff">6&lt;/span>]
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- instance Applicative Maybe&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">Just&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;lt;*&amp;gt;&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="mi">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- instance Applicative []&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[(&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)]&lt;/span> &lt;span class="o">&amp;lt;*&amp;gt;&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果我们把前文例子中 &lt;code>safeDiv&lt;/code> 里的 &lt;code>fmap'&lt;/code> 删去，那么下面这个函数就会开始出类型错误：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- without customized fmap function&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> x &lt;span style="color:#f92672">=&lt;/span> safeDiv a b &lt;span style="color:#75715e">-- 第一层 a/b&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> y &lt;span style="color:#f92672">=&lt;/span> fmap (&lt;span style="color:#a6e22e">\&lt;/span>v &lt;span style="color:#f92672">-&amp;gt;&lt;/span> safeDiv v c) x &lt;span style="color:#75715e">-- 第二层 (a/b)/c&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> z &lt;span style="color:#f92672">=&lt;/span> fmap (&lt;span style="color:#a6e22e">\&lt;/span>v &lt;span style="color:#f92672">-&amp;gt;&lt;/span> safeDiv v d) y &lt;span style="color:#75715e">-- 第三层 (a/b/c)/d&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">in&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fmap (&lt;span style="color:#a6e22e">\&lt;/span>v &lt;span style="color:#f92672">-&amp;gt;&lt;/span> safeDiv v e) z &lt;span style="color:#75715e">-- 第四层 (a/b/c/d)/e&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- without customized fmap function&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">let&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">x&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="c1">-- 第一层 a/b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">y&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="c1">-- 第二层 (a/b)/c&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">z&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="n">d&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="c1">-- 第三层 (a/b/c)/d&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">z&lt;/span> &lt;span class="c1">-- 第四层 (a/b/c/d)/e&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>原因前文说了，&lt;code>fmap&lt;/code> 其实返回的是 &lt;code>Just (f a)&lt;/code>，也就是：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">fmap&lt;/span> (&lt;span style="color:#a6e22e">\&lt;/span>v &lt;span style="color:#f92672">-&amp;gt;&lt;/span> safeDiv v &lt;span style="color:#ae81ff">1&lt;/span>) (&lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> (&lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span>)
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">\&lt;/span>&lt;span class="n">v&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">v&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这就有点难受了，不是我们预期想要的 &lt;code>Just 10&lt;/code>。这种情况下就需要使用 monad 了，也就是上面定义中 &lt;code>&amp;gt;&amp;gt;=&lt;/code>（读作 bind）来进行处理了，也是直接看官方代码吧：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- | @since 2.01&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">instance&lt;/span> &lt;span style="color:#66d9ef">Monad&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> &lt;span style="color:#66d9ef">where&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#66d9ef">Just&lt;/span> x) &lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span> k &lt;span style="color:#f92672">=&lt;/span> k x
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span> &lt;span style="color:#66d9ef">_&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#f92672">*&amp;gt;&lt;/span>)
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- | @since 2.01&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">instance&lt;/span> &lt;span class="kt">Monad&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="kr">where&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;=&lt;/span> &lt;span class="n">k&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">k&lt;/span> &lt;span class="n">x&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">Nothing&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;=&lt;/span> &lt;span class="kr">_&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">*&amp;gt;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>对比官方 &lt;code>fmap&lt;/code> 就能看到，monad 的 instance 中不再是 &lt;code>Just (k x)&lt;/code>，而是简介、明了的 &lt;code>k x&lt;/code>，neat。这也是跟我们在 &lt;code>safeDiv&lt;/code> 中实现的 &lt;code>&amp;gt;&amp;gt;=&lt;/code> 版本完全等价，所以它就是一个 monad。&lt;/p>
 &lt;p>依然，贴上一些视频中的例子：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span> &lt;span style="color:#a6e22e">\&lt;/span>x &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> (x&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Just&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">Just&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;=&lt;/span> &lt;span class="nf">\&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Just&lt;/span> &lt;span class="mi">4&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>个人理解，无论是 functor、applicative 还是 monad，它们本质上都是为了更好地处理“被装箱的类型”。而 haskell 比较推崇这种盒子模式，很多类型像 &lt;code>Maybe a&lt;/code>、&lt;code>IO a&lt;/code> 这种，都实现了 monad 的 bind 运算符。&lt;/p>
 &lt;p>比如 Haskell 里常用的数组展开，其实也是借助 functor 来完成的，来自&lt;a href="https://zhuanlan.zhihu.com/p/39734882">评论区的 Narc 大神&lt;/a>：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- original&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[ x &lt;span style="color:#f92672">+&lt;/span> y &lt;span style="color:#f92672">|&lt;/span> x &lt;span style="color:#f92672">&amp;lt;-&lt;/span> [&lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">..&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>], y &lt;span style="color:#f92672">&amp;lt;-&lt;/span> [&lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">..&lt;/span>x]]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- desuger&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">..&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>] &lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span> &lt;span style="color:#a6e22e">\&lt;/span>x &lt;span style="color:#f92672">-&amp;gt;&lt;/span> [&lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">..&lt;/span>x] &lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span> &lt;span style="color:#a6e22e">\&lt;/span>y &lt;span style="color:#f92672">-&amp;gt;&lt;/span> return (x &lt;span style="color:#f92672">+&lt;/span> y)
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- original&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="ow">&amp;lt;-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">..&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="ow">&amp;lt;-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">..&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">-- desuger&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">..&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;=&lt;/span> &lt;span class="nf">\&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">..&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">&amp;gt;&amp;gt;=&lt;/span> &lt;span class="nf">\&lt;/span>&lt;span class="n">y&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="n">return&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>另外 JavaScript 的 &lt;code>Promise&lt;/code> 也是跟 monad 有点“异曲同工”之妙的，毕竟 lazy eval 能看作是异步（。&lt;/p>
 &lt;h2 id="myth">Myth&lt;/h2>
 &lt;p>我个人依然有一些迷思，可能需要系统地学习下范畴论才能解惑了。&lt;/p>
@@ -440,16 +613,16 @@ Write C.3
 &lt;li>一个自函子范畴上的幺半群。。嗯，还是不太懂😂&lt;/li>
 &lt;/ol>
 &lt;p>还有，原知乎帖子里讲述了一个 &lt;code>join&lt;/code> 操作：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> x &lt;span style="color:#f92672">=&lt;/span> safeDiv a b
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> y &lt;span style="color:#f92672">=&lt;/span> fmap (safeDiv c) x
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> z &lt;span style="color:#f92672">=&lt;/span> (fmap &lt;span style="color:#f92672">.&lt;/span> fmap) (safeDiv d) y
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">in&lt;/span> (fmap &lt;span style="color:#f92672">.&lt;/span> fmap &lt;span style="color:#f92672">.&lt;/span> fmap) (safeDiv e) z
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">join&lt;/span> &lt;span style="color:#f92672">::&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> (&lt;span style="color:#66d9ef">Maybe&lt;/span> a) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> a
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> join (&lt;span style="color:#66d9ef">Just&lt;/span> x) &lt;span style="color:#f92672">=&lt;/span> x
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> join &lt;span style="color:#66d9ef">Nothing&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">Nothing&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span>) &lt;span style="color:#f92672">::&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> a &lt;span style="color:#f92672">-&amp;gt;&lt;/span> (a &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> b) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">Maybe&lt;/span> b
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#f92672">&amp;gt;&amp;gt;=&lt;/span>) mbx f &lt;span style="color:#f92672">=&lt;/span> join (fmap f mbx)
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-haskell" data-lang="haskell">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">let&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">safeDiv&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">y&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">fmap&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">safeDiv&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">x&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">z&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">fmap&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="n">fmap&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">safeDiv&lt;/span> &lt;span class="n">d&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">in&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">fmap&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="n">fmap&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="n">fmap&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">safeDiv&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">z&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nf">join&lt;/span> &lt;span class="ow">::&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Maybe&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">join&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">Just&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">x&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">join&lt;/span> &lt;span class="kt">Nothing&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="kt">Nothing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;=&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">::&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">-&amp;gt;&lt;/span> &lt;span class="kt">Maybe&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;=&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">mbx&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="ow">=&lt;/span> &lt;span class="n">join&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">fmap&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="n">mbx&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这一部分我暂时还不是很懂，答主给的例子中那一串 &lt;code>fmap&lt;/code> 我暂时还是没能推导出类型出来（不太熟悉 &lt;code>.&lt;/code> 操作符，是 haskell 超高校级的新手了）。To be continued。&lt;/p>
 &lt;p>其实自己还是有挺多地方不懂的，不过 haskell 可能暂时不会再学习了，目前对 erlang 更有兴趣一些，学一门语言等于学完了并发范式，不香吗不香吗（其实主要是数学太渣了，看了一小会范畴论就已经开始歇菜了🤧）。&lt;/p></description></item></channel></rss>
