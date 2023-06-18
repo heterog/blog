@@ -26,7 +26,7 @@ Emacs 作为文本编辑器是不够“纯粹”的，但我个人认为，模�
 
 * help-with-tutorial
 
-实际上 Emacs 你只需要掌握 ~M-x~ 这么一个快捷键就可以了（认真脸），几乎所有的快捷键都是在执行某个 ~(interactive)~ 命令。比如 ~C-n~ 就是 ~next-line~ ，~C-s~ 就是 ~isearch-forward~ ，如此。
+实际上 Emacs 你只需要掌握 ~M-x~ 这么一个快捷键就可以了（认真脸），几乎所有的快捷键都是在执行某个 ~(interactive)~ 命令。比如 ~C-n~ 就是 ~next-line~ ， ~C-s~ 就是 ~isearch-forward~ ，如此。
 
 我自己对 Vim 实际上不是很熟，连 ~ciw~ 这种这么好用的命令我都是学 Emacs 的时候发现的，因此选择了走一遍 ~help-with-tutorial~ ；如果你比较熟悉 Vim 的话可以直接使用 Doom Emacs 配置来快速入门。
 
@@ -41,7 +41,7 @@ Emacs 作为文本编辑器是不够“纯粹”的，但我个人认为，模�
 
 P.S. 可能 Emacs 的 Common Lisp 扩展会让敲代码的体验好一些，无责任推荐（。
 
-* Prelude -> Postlude
+* Prelude|Postlude
 
 在尝试了很多配置之后，都感觉不是很“贴合”自己，尤其是大家似乎都很喜欢 Evil，但我自己更偏爱原生的键位，因为它泛用性比较强，在 ~bash/zsh~ 这类终端下默认就可以使用。因此敲定了 [[https://github.com/hartlottery/postlude][Prelude]] 作为框架，在此基础上修改。
 
@@ -98,7 +98,7 @@ Meow 的逻辑则是，我选定了一个单词，对它进行替换的操作；
 
 还有需要酌定的就是所谓的 Ergo，即人体工程学，之前尝试了一下 [[https://github.com/jyp/boon][Boon]] 发现好像没有必要为了省一点的手指挪动距离而放弃养成的习惯。
 
-P.S. 走了一遍 Boon 的 Tutor 才明白，原来手指尽量不移动 + 左右按键分配均衡，就叫做人体工程学键位了。。好吧，我还像试试 Dvorak/Colemark/Workman 的说。
+P.S. 走了一遍 Boon 的 Tutor 才明白，原来手指尽量不移动 + 左右按键分配均衡，就叫做人体工程学键位了。。感觉可以试试 Dvorak/Colemark/Workman 了的说。
 
 另外 IDE 常用的向前向后跳转还暂时没有去弄，因为像 ~better-jumper~ 这样的插件都需要自己手动 mark 跳跃点才行，想想还是有一定工作量的。依然还在磨合期（。
 
