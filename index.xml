@@ -34,7 +34,7 @@ help-with-tutorial
 &lt;/h2>
 &lt;div id="outline-text-headline-2" class="outline-text-2">
 &lt;p>
-实际上 Emacs 你只需要掌握 &lt;code>M-x&lt;/code> 这么一个快捷键就可以了（认真脸），几乎所有的快捷键都是在执行某个 &lt;code>(interactive)&lt;/code> 命令。比如 &lt;code>C-n&lt;/code> 就是 &lt;code>next-line&lt;/code> ，~C-s~ 就是 &lt;code>isearch-forward&lt;/code> ，如此。&lt;/p>
+实际上 Emacs 你只需要掌握 &lt;code>M-x&lt;/code> 这么一个快捷键就可以了（认真脸），几乎所有的快捷键都是在执行某个 &lt;code>(interactive)&lt;/code> 命令。比如 &lt;code>C-n&lt;/code> 就是 &lt;code>next-line&lt;/code> ， &lt;code>C-s&lt;/code> 就是 &lt;code>isearch-forward&lt;/code> ，如此。&lt;/p>
 &lt;p>
 我自己对 Vim 实际上不是很熟，连 &lt;code>ciw&lt;/code> 这种这么好用的命令我都是学 Emacs 的时候发现的，因此选择了走一遍 &lt;code>help-with-tutorial&lt;/code> ；如果你比较熟悉 Vim 的话可以直接使用 Doom Emacs 配置来快速入门。&lt;/p>
 &lt;p>
@@ -52,7 +52,7 @@ P.S. 可能 Emacs 的 Common Lisp 扩展会让敲代码的体验好一些，无�
 &lt;/div>
 &lt;div id="outline-container-headline-3" class="outline-2">
 &lt;h2 id="headline-3">
-Prelude -&amp;gt; Postlude
+Prelude|Postlude
 &lt;/h2>
 &lt;div id="outline-text-headline-3" class="outline-text-2">
 &lt;p>
@@ -134,7 +134,7 @@ Next
 &lt;p>
 还有需要酌定的就是所谓的 Ergo，即人体工程学，之前尝试了一下 &lt;a href="https://github.com/jyp/boon">Boon&lt;/a> 发现好像没有必要为了省一点的手指挪动距离而放弃养成的习惯。&lt;/p>
 &lt;p>
-P.S. 走了一遍 Boon 的 Tutor 才明白，原来手指尽量不移动 + 左右按键分配均衡，就叫做人体工程学键位了。。好吧，我还像试试 Dvorak/Colemark/Workman 的说。&lt;/p>
+P.S. 走了一遍 Boon 的 Tutor 才明白，原来手指尽量不移动 + 左右按键分配均衡，就叫做人体工程学键位了。。感觉可以试试 Dvorak/Colemark/Workman 了的说。&lt;/p>
 &lt;p>
 另外 IDE 常用的向前向后跳转还暂时没有去弄，因为像 &lt;code>better-jumper&lt;/code> 这样的插件都需要自己手动 mark 跳跃点才行，想想还是有一定工作量的。依然还在磨合期（。&lt;/p>
 &lt;/div>
