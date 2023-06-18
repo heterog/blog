@@ -4,16 +4,19 @@
 
 {{define "main"}}
 {{- partial "header.html" . -}}
+{{/* force hugo to generate the css */}}
+{{ $css := resources.Get "hortensia.scss" | toCSS | minify }}
+{{ $link := $css.RelPermalink }}
 <main>
   {{- if .Content }}
 	<div>
 		{{ .Content }}
 	</div>
   {{- end }}
+  {{- range where .Pages "Section" "posts" }}
   {{- range .Data.Pages.GroupByDate "2006" }}
   <div>
     <div id="{{ .Key }}">{{ .Key }}</div>
-    {{- range where .Pages "Section" "posts"}}
     <ul>
       {{- range .Pages }}
       <li>
@@ -21,8 +24,8 @@
       </li>
       {{- end }}
     </ul>
-    {{- end }}
   </div>
+  {{- end }}
   {{- end }}
 </main>
 {{end}}

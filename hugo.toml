@@ -17,9 +17,12 @@ staticDir = ["static"]
 [markup.goldmark.renderer]
 	unsafe = true
 
+[markup.highlight]
+        noclasses = false
+
 [params]
 	# is simpleCSSURL not set, will use https://cdn.simplecss.org/simple.min.css
-	# simpleCSSURL = "/simple.min.css"
+	simpleCSSURL = "/hortensia.min.css"
 	# 
 	# commentText = 'For comments, please send me <a href="mailto:~lindsay/public-inbox@lists.sr.ht">an email</a>.'
 	

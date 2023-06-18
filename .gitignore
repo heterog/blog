@@ -1,2 +1,5 @@
 *~
 .hugo_build.lock
+_gen/
+public/
+.sass-cache/
