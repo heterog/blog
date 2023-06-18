@@ -32,19 +32,46 @@ body {
   }
 }
 
-// focus-on
-pre {
-  border: none;
-}
-pre, blockquote, figure, video {
-  max-width: 100vw;
-  margin-left: -1.4rem;
-  width: calc(100% + 2.8rem);
+// more-width
+@mixin more-width($left-offset) {
+  padding-left: calc(2.8rem - #{$left-offset});
+  padding-right: 2.8rem;
+  margin-left: -2.8rem;
+  width: calc(100% + 5.6rem);
 
-  @media (max-width: 800px) {
-    padding: 1rem calc(50vw - 50%);
+  @media (max-width: 832px) {
+    padding-left: calc(50vw - 50% - #{$left-offset});
+    padding-right: calc(50vw - 50%);
     margin-left: calc(50% - 50vw);
     width: 100vw;
     border-radius: none;
+  }
+}
+
+// focus-on-code
+pre {
+  border: none;
+  max-width: 100vw;
+  @include more-width(0rem);
+}
+
+// what-quote
+blockquote {
+  @include more-width(0.35rem); // border-left
+}
+
+// cat-image
+figure {
+  // TODO: merge with `more-width`
+  margin-left: -2.8rem;
+  width: calc(100% + 5.6rem);
+
+  @media (max-width: 832px) {
+    margin-left: calc(50% - 50vw);
+    width: 100vw;
+
+    img {
+      border-radius: none;
+    }
   }
 }
