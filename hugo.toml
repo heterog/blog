@@ -1,4 +1,4 @@
-baseURL = 'https://error.iorw.io'
+baseURL = 'https://collect.fn.pub'
 languageCode = 'zh-hans'
 defaultContentLanguage = 'zh'
 title = 'Heaven Is'
@@ -8,7 +8,7 @@ hasCJKLanguage = true
 rssLimit = 10
 copyright = "unlicense yet."
 enableEmoji =  true
-disableKinds = ["taxonomy", "taxonomyTerm"]
+disableKinds = ["taxonomy"]
 staticDir = ["static"]
 
 [author]
@@ -21,13 +21,9 @@ staticDir = ["static"]
         noclasses = false
 
 [params]
-	# is simpleCSSURL not set, will use https://cdn.simplecss.org/simple.min.css
 	simpleCSSURL = "/hortensia.min.css"
-	# 
-	# commentText = 'For comments, please send me <a href="mailto:~lindsay/public-inbox@lists.sr.ht">an email</a>.'
-	
 	dateformNumTime = "2006-01-02 15:04 -0700"
-	footerCopyright = '<a href="https://github.com/hartlottery" target="_blank" rel="noopener">M-x</a>'
+	footerCopyright = '<a href="https://github.com/heterog" target="_blank" rel="noopener">M-x</a>'
 
 [[menu.main]]
 	name = "[->+<]"

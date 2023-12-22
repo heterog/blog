@@ -20,7 +20,12 @@
     <ul>
       {{- range .Pages }}
       <li>
-        <a href="{{.Permalink}}">{{.Title}}</a>
+        {{/* https://discourse.gohugo.io/t/hugo-showing-a-html-file-directly-after-clicking-one-post/44042 */}}
+        {{- $href := .Permalink }}
+        {{- with .Params.redirect }}
+          {{- $href = . }}
+        {{- end }}
+        <a href="{{ $href }}">{{.Title}}</a>
       </li>
       {{- end }}
     </ul>

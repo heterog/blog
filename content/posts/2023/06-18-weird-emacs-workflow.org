@@ -1,8 +1,16 @@
 #+title: 混乱中立与 Emacs
 #+date: 2023-06-18T14:46:01+08:00
-
 #+caption: Meow! [[https://pixabay.com/photos/cat-paw-keyboard-playful-nasty-3695040][Lemonsandtea]]
+
 [[https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg]]
+
+* Semiannual
+
+历史（折腾史）总是如此的循环，主力迁移到了 CLion + IdeaVIM，因此原来的 Prelude 和 Modalka 基本都废弃了，重新基于 doomemacs 小小地改造了一下，目前将 Emacs 定位终端以及 VSCode 的替代品，但就索引、重构这方面的能力来说还是更加觉得 CLion 更好，尤其是现在 Nova 解决了饱受诟病的内存和性能问题。
+
+另外还是拥抱了 Evil，将它替换掉了 Modalka，不过也因此将 Insert State 更改为了 Emacs State，这样在输入的时候就能切换回 Emacs 的快捷键，不是很 nice，但是 works😉。
+
+这篇记录嘛，还是就放在这里了（，说不定以后回过头来看自己的折腾劲还是挺有意思的。
 
 * Why Emacs
 
