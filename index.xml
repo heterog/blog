@@ -1,14 +1,24 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Heaven Is</title><link>https://error.iorw.io/</link><description>Recent content on Heaven Is</description><generator>Hugo -- gohugo.io</generator><language>zh-hans</language><copyright>unlicense yet.</copyright><lastBuildDate>Sun, 18 Jun 2023 14:46:01 +0800</lastBuildDate><atom:link href="https://error.iorw.io/" rel="self" type="application/rss+xml"/><item><title>混乱中立与 Emacs</title><link>https://error.iorw.io/2023/06-18-weird-emacs-workflow/</link><pubDate>Sun, 18 Jun 2023 14:46:01 +0800</pubDate><guid>https://error.iorw.io/2023/06-18-weird-emacs-workflow/</guid><description>
-&lt;figure>
-&lt;img src="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" alt="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" title="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" />&lt;figcaption>
-Meow! &lt;a href="https://pixabay.com/photos/cat-paw-keyboard-playful-nasty-3695040">Lemonsandtea&lt;/a>
-&lt;/figcaption>
-&lt;/figure>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Heaven Is</title><link>https://collect.fn.pub/</link><description>Recent content on Heaven Is</description><generator>Hugo -- gohugo.io</generator><language>zh-hans</language><copyright>unlicense yet.</copyright><lastBuildDate>Thu, 09 Nov 2023 15:38:01 +0800</lastBuildDate><atom:link href="https://collect.fn.pub/" rel="self" type="application/rss+xml"/><item><title>网络、技术与道德</title><link>https://collect.fn.pub/2023/11-09-network-morality/</link><pubDate>Thu, 09 Nov 2023 15:38:01 +0800</pubDate><guid>https://collect.fn.pub/2023/11-09-network-morality/</guid><description>&lt;p>尝试用 Outline 来写一些东西，可能有点破坏 blog 的协调性；以后可能搞个 sync 脚本之类的定期同步会更好？目前这里就先当作 Index Home 了（逃。&lt;/p></description></item><item><title>混乱中立与 Emacs</title><link>https://collect.fn.pub/2023/06-18-weird-emacs-workflow/</link><pubDate>Sun, 18 Jun 2023 14:46:01 +0800</pubDate><guid>https://collect.fn.pub/2023/06-18-weird-emacs-workflow/</guid><description>
+&lt;p>
+&lt;img src="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" alt="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" title="https://cdn.pixabay.com/photo/2018/09/22/11/21/cat-3695040_1280.jpg" />&lt;/p>
 &lt;div id="outline-container-headline-1" class="outline-2">
 &lt;h2 id="headline-1">
-Why Emacs
+Semiannual
 &lt;/h2>
 &lt;div id="outline-text-headline-1" class="outline-text-2">
+&lt;p>
+历史（折腾史）总是如此的循环，主力迁移到了 CLion + IdeaVIM，因此原来的 Prelude 和 Modalka 基本都废弃了，重新基于 doomemacs 小小地改造了一下，目前将 Emacs 定位终端以及 VSCode 的替代品，但就索引、重构这方面的能力来说还是更加觉得 CLion 更好，尤其是现在 Nova 解决了饱受诟病的内存和性能问题。&lt;/p>
+&lt;p>
+另外还是拥抱了 Evil，将它替换掉了 Modalka，不过也因此将 Insert State 更改为了 Emacs State，这样在输入的时候就能切换回 Emacs 的快捷键，不是很 nice，但是 works😉。&lt;/p>
+&lt;p>
+这篇记录嘛，还是就放在这里了（，说不定以后回过头来看自己的折腾劲还是挺有意思的。&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="outline-container-headline-2" class="outline-2">
+&lt;h2 id="headline-2">
+Why Emacs
+&lt;/h2>
+&lt;div id="outline-text-headline-2" class="outline-text-2">
 &lt;p>
 人类关于 Emacs、Vim 甚至是 VSCode 的争议从未休止，毕竟工具往往跟效率关系密切。对我而言，起初只是想试一试传闻中的 Emacs，看它到底有几分威力，在折腾过如&lt;a href="https://github.com/redguardtoo/emacs.d">陈斌&lt;/a>大佬、&lt;a href="https://github.com/doomemacs/doomemacs">Doom Emacs&lt;/a> 等等配置之后，逐渐开始有点“上头”，开始将日常工作流都迁移到 Emacs 上去。&lt;/p>
 &lt;p>
@@ -28,11 +38,11 @@ Why Emacs
 Emacs 作为文本编辑器是不够“纯粹”的，但我个人认为，模块化设计跟效率有着天然的冲突，选择 Emacs 就需要接收模块化不够的问题。就像大家偏好使用 IDE 一样，效率的来源往往就是多个小模块的拼合。&lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div id="outline-container-headline-2" class="outline-2">
-&lt;h2 id="headline-2">
+&lt;div id="outline-container-headline-3" class="outline-2">
+&lt;h2 id="headline-3">
 help-with-tutorial
 &lt;/h2>
-&lt;div id="outline-text-headline-2" class="outline-text-2">
+&lt;div id="outline-text-headline-3" class="outline-text-2">
 &lt;p>
 实际上 Emacs 你只需要掌握 &lt;code>M-x&lt;/code> 这么一个快捷键就可以了（认真脸），几乎所有的快捷键都是在执行某个 &lt;code>(interactive)&lt;/code> 命令。比如 &lt;code>C-n&lt;/code> 就是 &lt;code>next-line&lt;/code> ， &lt;code>C-s&lt;/code> 就是 &lt;code>isearch-forward&lt;/code> ，如此。&lt;/p>
 &lt;p>
@@ -50,20 +60,20 @@ help-with-tutorial
 P.S. 可能 Emacs 的 Common Lisp 扩展会让敲代码的体验好一些，无责任推荐（。&lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div id="outline-container-headline-3" class="outline-2">
-&lt;h2 id="headline-3">
+&lt;div id="outline-container-headline-4" class="outline-2">
+&lt;h2 id="headline-4">
 Prelude|Postlude
 &lt;/h2>
-&lt;div id="outline-text-headline-3" class="outline-text-2">
+&lt;div id="outline-text-headline-4" class="outline-text-2">
 &lt;p>
 在尝试了很多配置之后，都感觉不是很“贴合”自己，尤其是大家似乎都很喜欢 Evil，但我自己更偏爱原生的键位，因为它泛用性比较强，在 &lt;code>bash/zsh&lt;/code> 这类终端下默认就可以使用。因此敲定了 &lt;a href="https://github.com/hartlottery/postlude">Prelude&lt;/a> 作为框架，在此基础上修改。&lt;/p>
 &lt;p>
 我自己的一些“所谓的”哲学理念（可能有点 bullsht）：&lt;/p>
-&lt;div id="outline-container-headline-4" class="outline-3">
-&lt;h3 id="headline-4">
+&lt;div id="outline-container-headline-5" class="outline-3">
+&lt;h3 id="headline-5">
 Modalka
 &lt;/h3>
-&lt;div id="outline-text-headline-4" class="outline-text-3">
+&lt;div id="outline-text-headline-5" class="outline-text-3">
 &lt;p>
 为了小拇指的健康，避免因 Control 键按太多而承受不住（雾），一个 modal editing 还是相当有必要的。所谓 modal editing，其实就是给“编辑”这个操作分模式，像 Vim 有 Normal 和 Insert。&lt;/p>
 &lt;p>
@@ -74,11 +84,11 @@ Modalka
 P.S. 不过其实发现自己好像 modal 模式用的不是很频繁，Control 键按的依然“欢快”。可能确实习惯了统一快捷键的方式（？），不过为了小拇指，还是多切切习惯习惯好了。&lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div id="outline-container-headline-5" class="outline-3">
-&lt;h3 id="headline-5">
+&lt;div id="outline-container-headline-6" class="outline-3">
+&lt;h3 id="headline-6">
 Workspace
 &lt;/h3>
-&lt;div id="outline-text-headline-5" class="outline-text-3">
+&lt;div id="outline-text-headline-6" class="outline-text-3">
 &lt;p>
 工作区则相当接近 i3 这样的配置，不过因为主力系统是 Windows（不要问为什么，我也很想换，但是万恶阿里郎），因此没办法利用 Win 键切换，所以还是用的快件键切换。&lt;/p>
 &lt;p>
@@ -87,11 +97,11 @@ Workspace
 这么选择主要是感觉日常中切换工作区的频率，相对与切换窗口来说要少一点（虽说如此，我还是很想像 i3 那样的全都要）。&lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div id="outline-container-headline-6" class="outline-3">
-&lt;h3 id="headline-6">
+&lt;div id="outline-container-headline-7" class="outline-3">
+&lt;h3 id="headline-7">
 Region
 &lt;/h3>
-&lt;div id="outline-text-headline-6" class="outline-text-3">
+&lt;div id="outline-text-headline-7" class="outline-text-3">
 &lt;p>
 日常改代码的时候，最重要的其实就是 region 的操控，如 Vim 经常被使用的 &lt;code>cw&lt;/code> 命令。因此选定了使用 &lt;a href="https://github.com/magnars/expand-region.el">expand-region.el&lt;/a> 来快速选择区域，这部分借鉴了 &lt;a href="https://github.com/meow-edit/meow">Meow&lt;/a> 的设计哲学，先选定区域，再决定动作。当然也从 Meow 那“抄”来了 &lt;code>meow-inner-of-thing&lt;/code> 作为备选。&lt;/p>
 &lt;blockquote>
@@ -105,11 +115,11 @@ Meow 的逻辑则是，我选定了一个单词，对它进行替换的操作；
 当然也缝合了 &lt;a href="https://github.com/oantolin/embark">Embark&lt;/a> 来进行操作，但是实际上目前用的并不多，只是搜索符号的时候代替 Vim 的 &lt;code>*/#&lt;/code> 这样的命令。在考虑是否要咔嚓掉 hhhh。&lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div id="outline-container-headline-7" class="outline-3">
-&lt;h3 id="headline-7">
+&lt;div id="outline-container-headline-8" class="outline-3">
+&lt;h3 id="headline-8">
 Jump
 &lt;/h3>
-&lt;div id="outline-text-headline-7" class="outline-text-3">
+&lt;div id="outline-text-headline-8" class="outline-text-3">
 &lt;p>
 大家好像都很喜欢用 &lt;a href="https://github.com/abo-abo/avy">avy&lt;/a> 来跳转，经过一些小代码浏览的经验，目前我习惯的跳转方式有：&lt;/p>
 &lt;ul>
@@ -123,12 +133,12 @@ Jump
 现在而言，我尽量遵循 &lt;strong>Jump more, move less&lt;/strong> 的原则，尽量地使用跳转代替 &lt;code>C-f&lt;/code> 等操作，当然在正常编辑中一些小错误的修正还是离不开 &lt;code>C-f&lt;/code> 等。&lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div id="outline-container-headline-8" class="outline-3">
-&lt;h3 id="headline-8">
+&lt;div id="outline-container-headline-9" class="outline-3">
+&lt;h3 id="headline-9">
 &lt;span class="todo">TODO&lt;/span>
 Next
 &lt;/h3>
-&lt;div id="outline-text-headline-8" class="outline-text-3">
+&lt;div id="outline-text-headline-9" class="outline-text-3">
 &lt;p>
 目前比较纠结要不要把 Meow 替换掉 Modalka，因为它的设计思想确实比较对我，但是又感觉实际上我只是喜欢它的选择模式，有了 &lt;code>expand-region.el&lt;/code> 之后似乎也不那么必需了。我也把 Vim 的 &lt;code>c&lt;/code> 键挪到了 Modalka 上，这样操作区域就更简单了。&lt;/p>
 &lt;p>
@@ -141,11 +151,11 @@ P.S. 走了一遍 Boon 的 Tutor 才明白，原来手指尽量不移动 + 左�
 &lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;div id="outline-container-headline-9" class="outline-2">
-&lt;h2 id="headline-9">
+&lt;div id="outline-container-headline-10" class="outline-2">
+&lt;h2 id="headline-10">
 Devil
 &lt;/h2>
-&lt;div id="outline-text-headline-9" class="outline-text-2">
+&lt;div id="outline-text-headline-10" class="outline-text-2">
 &lt;p>
 来自 &lt;a href="http://web.archive.org/web/20180602132306/https://plus.google.com/+LinusTorvalds/posts/iySKQGtkmtb">Linus Torvalds&lt;/a>：&lt;/p>
 &lt;blockquote>
@@ -155,11 +165,11 @@ Devil
 我尝试编译了一份 &lt;a href="https://github.com/torvalds/uemacs">torvalds/uemacs&lt;/a> 玩玩，发现它真的很纯粹（纯粹到按键绑定全都是硬编码在 C 文件里的），而且贯彻着上述“只做一件事”的 UNIX 哲学。也难怪 Linus 会如此评价 Emacs（。&lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div id="outline-container-headline-10" class="outline-2">
-&lt;h2 id="headline-10">
+&lt;div id="outline-container-headline-11" class="outline-2">
+&lt;h2 id="headline-11">
 混乱中立
 &lt;/h2>
-&lt;div id="outline-text-headline-10" class="outline-text-2">
+&lt;div id="outline-text-headline-11" class="outline-text-2">
 &lt;p>
 配置久了之后就有一点感受是，当能完全自定义自己的 workflow 时，我发现选择突然太多了，自己似乎无法定夺到底哪种才是更好的，导致自己的配置存在各种“混乱”，很多功能相互重叠，甚至是用不上但感觉又能提升效率。&lt;/p>
 &lt;p>
@@ -171,7 +181,7 @@ Devil
 &lt;p>
 &lt;em>May the Emacs be with you.&lt;/em>&lt;/p>
 &lt;/div>
-&lt;/div></description></item><item><title>浅入 x86 内存序</title><link>https://error.iorw.io/2022/12-17-memory-order-in-x86/</link><pubDate>Sat, 17 Dec 2022 17:10:42 +0800</pubDate><guid>https://error.iorw.io/2022/12-17-memory-order-in-x86/</guid><description>&lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">[WARN] Using deprecated method `memory-order&amp;#39;, it might be removed in the future.
+&lt;/div></description></item><item><title>浅入 x86 内存序</title><link>https://collect.fn.pub/2022/12-17-memory-order-in-x86/</link><pubDate>Sat, 17 Dec 2022 17:10:42 +0800</pubDate><guid>https://collect.fn.pub/2022/12-17-memory-order-in-x86/</guid><description>&lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">[WARN] Using deprecated method `memory-order&amp;#39;, it might be removed in the future.
 &lt;/code>&lt;/pre>&lt;h2 id="内存序memory-order">内存序（Memory Order）&lt;/h2>
 &lt;p>在 x86 中，内存屏障通常是不需要的，因为 x86 是比较严格的 TSO（不完全，因为始终没有“官宣”，但是按照定义来说比较接近，而且不同的厂商如 AMD/Intel 之间的实现也存在略微差别）。&lt;/p>
 &lt;p>百度找到了一份 &lt;a href="https://www.cis.upenn.edu/~devietti/classes/cis601-spring2016/sc_tso.pdf">sc_tso.pdf&lt;/a> 讲述了 TSO 的一些特点，其中包括程序顺序（program order）与内存序（memory order）之间的关系：&lt;/p>
@@ -457,7 +467,7 @@ Write C.3
 &lt;li>使用 &lt;code>asm volatile(&amp;quot;&amp;quot; ::: &amp;quot;memory&amp;quot;)&lt;/code>，针对的是该语句上下的重排，跟 CPU 的内存屏障很像，就是避免语句之前的读写操作重新排序到该语句之后。另外语句起作用的地方是 &lt;code>&amp;quot;memory&amp;quot;&lt;/code>，所以第一个参数无论是任何汇编指令都会有抑制编译器重排的效果。&lt;/li>
 &lt;/ol>
 &lt;p>大概也就是这些了，文章重点依然在 x86 上，暂时不讨论编译器了（其实是不会 QAQ）。&lt;/p>
-&lt;p>后续会写一篇 C/C++ 的 Memory Order，来对“真实世界”中的内存模型（希望能）有一个更稍微透彻的理解&lt;del>以及咕咕咕&lt;/del>。&lt;/p></description></item><item><title>关于</title><link>https://error.iorw.io/about/</link><pubDate>Fri, 09 Dec 2022 22:54:54 +0800</pubDate><guid>https://error.iorw.io/about/</guid><description>&lt;h2 id="me-myself-and-i">Me, Myself, and I&lt;/h2>
+&lt;p>后续会写一篇 C/C++ 的 Memory Order，来对“真实世界”中的内存模型（希望能）有一个更稍微透彻的理解&lt;del>以及咕咕咕&lt;/del>。&lt;/p></description></item><item><title>关于</title><link>https://collect.fn.pub/about/</link><pubDate>Fri, 09 Dec 2022 22:54:54 +0800</pubDate><guid>https://collect.fn.pub/about/</guid><description>&lt;h2 id="me-myself-and-i">Me, Myself, and I&lt;/h2>
 &lt;ul>
 &lt;li>不太起眼的一只鶸&lt;/li>
 &lt;li>装懂以及强答流作者&lt;/li>
@@ -474,7 +484,7 @@ Write C.3
 &lt;li>&lt;a href="http://www.zzfly.net">烟花易冷&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://virgilg72.github.io/">VirgilG72&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.yukicat.net/">雪猫社&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>乱谈 Monad</title><link>https://error.iorw.io/2022/12-08-babble-monad/</link><pubDate>Thu, 08 Dec 2022 20:46:25 +0800</pubDate><guid>https://error.iorw.io/2022/12-08-babble-monad/</guid><description>&lt;h2 id="preface">Preface&lt;/h2>
+&lt;/ul></description></item><item><title>乱谈 Monad</title><link>https://collect.fn.pub/2022/12-08-babble-monad/</link><pubDate>Thu, 08 Dec 2022 20:46:25 +0800</pubDate><guid>https://collect.fn.pub/2022/12-08-babble-monad/</guid><description>&lt;h2 id="preface">Preface&lt;/h2>
 &lt;p>这几天按着我半吊子的 haskell 水平稍微研究了一下 monad，还是有点不是很理解，只能浅浅地谈一谈我自己的想法，错误和纰漏难以避免，所谓乱谈是也。&lt;/p>
 &lt;h2 id="the-moand">The Moand&lt;/h2>
 &lt;p>这部分尽量会详细地阐述一下&lt;a href="https://www.zhihu.com/question/19635359/answer/172074046">刘月半大神的这篇文章&lt;/a>，适当的改动了一些例子，首先从 &lt;code>Maybe&lt;/code> 的构造函数开始，&lt;/p>
