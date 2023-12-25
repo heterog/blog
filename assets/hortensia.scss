@@ -23,12 +23,12 @@
 // less-border
 body {
   > header {
-    background-color: inherit;
-    border-bottom: none;
+    background-color: inherit !important;
+    border-bottom: none !important;
   }
 
   > footer {
-    border-top: none;
+    border-top: none !important;
   }
 }
 
